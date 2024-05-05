@@ -3,21 +3,62 @@
 .buttonContainer {
     border: black 4px solid;
     width: 50%;
+    height: 50%;
     border-radius: 16px;
-
+    aspect-ratio: 1/1;
     background-color: $MainBtnBg;
+    padding: 12px;
 
-    // &.active {
-    //     background-color: $InactiveBtnBg;
-    // }
 
     -webkit-box-shadow: -4px 4px 0px -2px rgba(0, 0, 0, 1);
     -moz-box-shadow: -4px 4px 0px -2px rgba(0, 0, 0, 1);
     box-shadow: -4px 4px 0px -2px rgba(0, 0, 0, 1);
+    transition: all 0.2s ease-in-out;
+
+
+    &.deactivated {
+        background-color: $InactiveBtnBg;
+    }
+
+
 }
 
-.buttonContainer:after {
-    content: "";
-    display: block;
-    padding-bottom: 100%;
+.o {
+    width: 100%;
+    height: 100%;
+
+    &.active {
+        animation: symbolPress 0.8s forwards ease-in-out;
+    }
+}
+
+.x {
+    width: 100%;
+    height: 100%;
+
+    &.active {
+        animation: symbolPress 0.7s forwards ease-out;
+    }
+}
+
+@keyframes symbolPress {
+    0% {
+        scale: 1.0;
+    }
+
+    25% {
+        scale: 0.8;
+    }
+
+    50% {
+        scale: 1.5;
+    }
+
+    75% {
+        scale: 1.0;
+    }
+
+    100% {
+        scale: 1.3;
+    }
 }

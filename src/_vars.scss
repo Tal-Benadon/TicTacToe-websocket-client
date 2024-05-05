@@ -1,10 +1,18 @@
 :root {
+    --title-text-color: #fff;
+    --title-text-border-color: black;
+    --button-text-border-color: #B28100;
     --button-main-bg: #C9F9FC;
     --button-inactive-bg: #D1D1D1;
+    --inactive-icon-color: #9B9B9B;
 }
 
+$ButtonTextBorderColor: var(--button-text-border-color);
+$TitleTextBorderColor: var(--title-text-border-color);
+$TitleTextColor: var(--title-text-color);
 $MainBtnBg: var(--button-main-bg);
 $InactiveBtnBg: var(--button-inactive-bg);
+$InactiveIconColor: var(--inactive-icon-color);
 
 .flex-c {
     display: flex;
