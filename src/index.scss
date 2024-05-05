@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+@import './vars';
+
+* {
+  font-family: Luckiest Guy, sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  height: 100%;
+  width: 100%;
+  padding: 20px;
+  @extend .flex-c;
+  gap: 24px;
+  border: black solid 1px;
+}
