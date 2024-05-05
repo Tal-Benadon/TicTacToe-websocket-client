@@ -6,7 +6,9 @@ export default function SymbolButton({ id, symbol = '', chosen, setChosen, isCli
     useEffect(() => {
         if (isClicked === true && chosen !== id) {
             setIsInactived(true)
-
+            setIsActive(false)
+        } else {
+            setIsInactived(false)
         }
     }, [id, chosen, isClicked])
     const handleOnclick = () => {
