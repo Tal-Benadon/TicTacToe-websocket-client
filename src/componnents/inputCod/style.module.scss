@@ -1,0 +1,22 @@
+P{
+position: relative;
+left: 45px;
+top: 8px;
+width: 80px;
+background-color:transparentize($color: #ffffff, $amount: 0) ;
+}
+
+.InpotCod{
+    height: 30px;
+    border-radius: 10px;
+    border-left:5px black solid ;
+    border-right:2px black solid ;
+    border-bottom:2px black solid ;
+    border-top:2px  black solid ;
+
+    box-shadow:  -2px 2px 0px #000000;
+
+    &:focus{
+        outline: none;
+    }
+}

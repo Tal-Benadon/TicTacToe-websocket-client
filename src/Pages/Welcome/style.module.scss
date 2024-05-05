@@ -1,0 +1,14 @@
+.Welcome{
+  display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    
+     img{
+     width:330px; 
+     height: 280px; 
+     object-fit: fill;
+     background-size: cover;
+     filter: drop-shadow(5px 6px 25px cyan);
+    }
+}
