@@ -1,28 +1,28 @@
-.ButtonBack{
+@import '../../vars';
+
+.ButtonBack {
     width: 50px;
     height: 50px;
-    background-color: rgba(252, 208, 21, 1);
+    background-color: $MainButtonBgColor;
     color: white;
     font-size: 40px;
     text-align: center;
     border-top: none;
-    border-right: 2px solid rgba(251, 181, 0, 1);
-    border-left: 2px solid rgba(251, 181, 0, 1);
-    border-bottom: 3px solid rgba(251, 181, 0, 1);
+    border-right: 2px solid $ButtonBorderColor;
+    border-left: 2px solid $ButtonBorderColor;
+    border-bottom: 3px solid $ButtonBorderColor;
     border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.8s;
 
-    &:hover{
-        background-color: rgba(251, 181, 0, 1);
+    &:hover {
+        background-color: $ButtonBorderColor;
 
     }
-    &:active{
-        background-color: rgb(207, 149, 2); 
+
+    &:active {
+        background-color: $ButtonActiveColor;
         transform: scale(0.99) translateY(0.2px);
     }
-    
+
 }
-
-
-

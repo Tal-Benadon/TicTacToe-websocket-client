@@ -14,12 +14,12 @@
   padding: 20px;
   @extend .flex-c;
   gap: 24px;
-  border: black solid 1px;
+  border: $BordersColor solid 1px;
 }
 
 h2 {
 
-  -webkit-text-stroke: 2px $TitleTextBorderColor;
+  -webkit-text-stroke: 1px $TitleTextBorderColor;
 
 
   color: $TitleTextColor

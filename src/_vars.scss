@@ -1,12 +1,30 @@
 :root {
+    --icon-shadow-filter: cyan;
+    --shadow-color: rgba(0, 0, 0, 1);
+    --main-bg-color: rgb(35, 109, 199);
+    --borders-color: black;
+    --wrapper-bg: #fff;
     --title-text-color: #fff;
+    --button-text-color: #fff;
     --title-text-border-color: black;
+    --button-main-bg-color: rgb(252, 208, 21);
+    --button-border-color: rgb(251, 181, 0);
+    --button-active-color: rgb(207, 149, 2);
     --button-text-border-color: #B28100;
     --button-main-bg: #C9F9FC;
     --button-inactive-bg: #D1D1D1;
     --inactive-icon-color: #9B9B9B;
 }
 
+$ButtonTextColor: var(--button-text-color);
+$ButtonActiveColor: var(--button-active-color);
+$ButtonBorderColor: var(--button-border-color);
+$MainButtonBgColor: var(--button-main-bg-color);
+$IconFilter: var(--icon-shadow-filter);
+$ShadowColor: var(--shadow-color);
+$MainBgColor: var(--main-bg-color);
+$BordersColor: var(--borders-color);
+$WrapperBgColor: var(--wrapper-bg);
 $ButtonTextBorderColor: var(--button-text-border-color);
 $TitleTextBorderColor: var(--title-text-border-color);
 $TitleTextColor: var(--title-text-color);
