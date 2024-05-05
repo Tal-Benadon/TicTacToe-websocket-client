@@ -1,9 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
+import X from './componnents/X/index'
+import O from './componnents/O/index'
 import './index.css'
+import Button from './componnents/Button'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-  </React.StrictMode>,
+  <> 
+ <X/>
+ <O/>
+ <Button/>
+ </>
 )
