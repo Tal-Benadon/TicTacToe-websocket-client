@@ -1,17 +1,19 @@
 .Button {
     color: white;
-    background-color: rgba(252, 208, 21, 1);
+    font-size: 20px;
+    background-color:rgba(252, 208, 21, 1);
     text-align: center;
     border-top: none;
-    border-right: 1px solid rgba(251, 181, 0, 1);
-    border-left: 1px solid rgba(251, 181, 0, 1);
-    border-bottom: 2px solid rgba(251, 181, 0, 1);
-    border-radius: 20px;
-    border-radius: 20px;
-    width: 100px;
-    height: 40px;
+    border-right: 4px solid rgba(251, 181, 0, 1);
+    border-left: 4px solid rgba(251, 181, 0, 1);
+    border-bottom: 8px solid rgba(251, 181, 0, 1);
+    border-radius: 30px;
+    width: 100%;
+    height: 60px;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.8s;
+
+    margin:20px ;
 }
 
 .Button:hover {
@@ -19,6 +21,6 @@
 }
 
 .Button:active {
-    background-color: rgba(178, 129, 0, 1); 
-    transform: scale(0.9) translateY(2px); 
+    background-color: rgb(207, 149, 2); 
+    transform: scale(0.99) translateY(0.2px); 
 }
