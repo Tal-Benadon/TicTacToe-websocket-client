@@ -1,0 +1,13 @@
+:root {
+    --button-main-bg: #C9F9FC;
+    --button-inactive-bg: #D1D1D1;
+}
+
+$MainBtnBg: var(--button-main-bg);
+$InactiveBtnBg: var(--button-inactive-bg);
+
+.flex-c {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

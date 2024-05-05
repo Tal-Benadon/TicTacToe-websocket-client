@@ -1,0 +1,23 @@
+@import '../../vars';
+
+.buttonContainer {
+    border: black 4px solid;
+    width: 50%;
+    border-radius: 16px;
+
+    background-color: $MainBtnBg;
+
+    // &.active {
+    //     background-color: $InactiveBtnBg;
+    // }
+
+    -webkit-box-shadow: -4px 4px 0px -2px rgba(0, 0, 0, 1);
+    -moz-box-shadow: -4px 4px 0px -2px rgba(0, 0, 0, 1);
+    box-shadow: -4px 4px 0px -2px rgba(0, 0, 0, 1);
+}
+
+.buttonContainer:after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+}
