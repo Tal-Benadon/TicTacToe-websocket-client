@@ -8,14 +8,14 @@ export default function JoinGame() {
     return (
         <div className={styles.JoinGame}>
             <ButtonBack />
-            <h1>JOIN TO A GAME</h1>
+            <h2>JOIN TO A GAME</h2>
 
             <InputCod />
             <Button text='JOIN'/>
 
 <div className={styles.OR}>
     <hr />
-    <h3>OR</h3>
+    <h2>OR</h2>
     <hr />
 </div>
 
