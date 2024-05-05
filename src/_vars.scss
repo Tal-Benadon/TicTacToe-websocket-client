@@ -1,10 +1,12 @@
 :root {
     --button-main-bg: #C9F9FC;
     --button-inactive-bg: #D1D1D1;
+    --inactive-icon-color: #9B9B9B;
 }
 
 $MainBtnBg: var(--button-main-bg);
 $InactiveBtnBg: var(--button-inactive-bg);
+$InactiveIconColor: var(--inactive-icon-color);
 
 .flex-c {
     display: flex;
