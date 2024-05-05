@@ -16,3 +16,8 @@
   gap: 24px;
   border: black solid 1px;
 }
+
+h2 {
+  -webkit-text-stroke: 1px $TitleTextBorderColor;
+  color: $TitleTextColor
+}

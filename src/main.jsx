@@ -4,9 +4,9 @@ import '../src/index.scss'
 
 import { createBrowserRouter, Router, RouterProvider } from 'react-router-dom'
 import Layout from './layout'
-import Welcome from './Pages/Welcome'
-import Menu from './Pages/Menu'
-import JoinGame from './Pages/JoinGame'
+import Welcome from './pages/Welcome'
+import Menu from './pages/Menu'
+import JoinGame from './pages/JoinGame'
 
 const router = createBrowserRouter([
   {
@@ -21,15 +21,15 @@ const router = createBrowserRouter([
       },
       {
         path: 'JoinGame',
-        children: [{ path: '/JoinGame', element: <JoinGame/>}]
+        children: [{ path: '/JoinGame', element: <JoinGame /> }]
       }
     ]
   }])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <> 
+  <>
 
-<RouterProvider router={router}/>
+    <RouterProvider router={router} />
 
- </>
+  </>
 )

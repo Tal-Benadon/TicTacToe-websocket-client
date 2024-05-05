@@ -1,5 +1,8 @@
+@import "../../vars";
+
 .Button {
-    color: white;
+    color: $TitleTextColor;
+    -webkit-text-stroke: $ButtonTextBorderColor 1.2px;
     font-size: 20px;
     background-color:rgba(252, 208, 21, 1);
     text-align: center;
@@ -13,7 +16,7 @@
     cursor: pointer;
     transition: background-color 0.3s, transform 0.8s;
 
-    margin:20px ;
+   
 }
 
 .Button:hover {
