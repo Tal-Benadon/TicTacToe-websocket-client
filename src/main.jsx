@@ -17,6 +17,7 @@ const router = createBrowserRouter([
       {
         path: 'Menu', element: <Menu />
 
+
       },
       {
         path: 'JoinGame', element: <JoinGame />
