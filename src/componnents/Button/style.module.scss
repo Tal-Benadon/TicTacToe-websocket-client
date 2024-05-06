@@ -1,15 +1,8 @@
-<<<<<<< HEAD
 @import '../../vars';
-
-.Button {
-    color: $ButtonTextColor;
-=======
-@import "../../vars";
 
 .Button {
     color: $TitleTextColor;
     -webkit-text-stroke: $ButtonTextBorderColor 1.2px;
->>>>>>> b4834425c6040419623c87d643a85bfab85d8e93
     font-size: 20px;
     background-color: $MainButtonBgColor;
     text-align: center;
@@ -23,11 +16,7 @@
     cursor: pointer;
     transition: background-color 0.3s, transform 0.8s;
 
-<<<<<<< HEAD
-    margin: 20px;
-=======
-   
->>>>>>> b4834425c6040419623c87d643a85bfab85d8e93
+
 }
 
 .Button:hover {
