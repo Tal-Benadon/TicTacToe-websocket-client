@@ -1,11 +1,13 @@
 .JoinGame {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 
     .content {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        width: 100%;
 
         .OR {
             display: flex;

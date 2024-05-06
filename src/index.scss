@@ -8,6 +8,24 @@
   padding: 0;
 }
 
+
+html,
+body {
+  height: 100%;
+
+}
+
+
+body {
+  background-color: $MainBgColor;
+}
+
+#root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 .container {
   height: 100%;
   width: 100%;

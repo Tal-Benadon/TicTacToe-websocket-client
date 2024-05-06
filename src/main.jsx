@@ -11,23 +11,24 @@ import ChoosePlayerPage from './pages/ChoosePlayerPage'
 
 const router = createBrowserRouter([
   {
-    element: <Layout />,
-    children: [
-      { path: '/', element: <Welcome /> },
+    element: <Layout />, children: [
+      {
+        path: '/', element: <Welcome />
+      },
       {
         path: 'Menu', element: <Menu />
-
-
       },
       {
         path: 'JoinGame', element: <JoinGame />
-
       },
       {
         path: 'ChoosePlayer', element: <ChoosePlayerPage />
       }
+
     ]
-  }])
+  },
+]
+)
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <>

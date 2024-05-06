@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-
+import styles from './styles.module.scss'
 import SymbolButton from '../../componnents/SymbolButton'
 import WhiteWrapperBox from '../../componnents/WhiteWrapperBox'
 
@@ -8,11 +8,13 @@ export default function ChoosePlayerPage() {
     const [isClicked, setIsClicked] = useState(false)
 
     return (
-        <WhiteWrapperBox style={
-            { padding: '16px', display: 'flex', gap: '18px' }
-        }>
-            <SymbolButton symbol={"O"} chosen={chosen} setChosen={setChosen} isClicked={isClicked} setIsClicked={setIsClicked} id={"O"} />
-            <SymbolButton symbol={"X"} chosen={chosen} setChosen={setChosen} isClicked={isClicked} setIsClicked={setIsClicked} id={"X"} />
-        </WhiteWrapperBox>
+        <div className={styles.choosePlayerContainer}>
+            <WhiteWrapperBox style={
+                { padding: '16px', display: 'flex', gap: '18px' }
+            }>
+                <SymbolButton symbol={"O"} chosen={chosen} setChosen={setChosen} isClicked={isClicked} setIsClicked={setIsClicked} id={"O"} />
+                <SymbolButton symbol={"X"} chosen={chosen} setChosen={setChosen} isClicked={isClicked} setIsClicked={setIsClicked} id={"X"} />
+            </WhiteWrapperBox>
+        </div>
     )
 }

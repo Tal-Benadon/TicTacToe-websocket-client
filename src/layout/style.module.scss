@@ -1,6 +1,12 @@
 @import '../vars';
 
-.Layout {
-    height: 100vh;
-    background-color: $MainBgColor;
+// .Layout {
+//     height: 100vh;
+//     background-color: $MainBgColor;
+// }
+.appLayoutContainer {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
 }
