@@ -15,8 +15,17 @@
     cursor: pointer;
     transition: background-color 0.3s, transform 0.8s;
 
+<<<<<<< HEAD
     &:hover {
         background-color: $ButtonBorderColor;
+=======
+    position: relative;
+    top: 20px;
+    left: 20px;
+
+    &:hover{
+        background-color: rgba(251, 181, 0, 1);
+>>>>>>> b4834425c6040419623c87d643a85bfab85d8e93
 
     }
 

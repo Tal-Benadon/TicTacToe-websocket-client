@@ -5,7 +5,7 @@ import styles from './style.module.scss';
 export default function InputCod() {
   return (
     <>
-    <p>YOUR CODE</p>
+    {/* <h2>YOUR CODE</h2> */}
     <input className={styles.InpotCod} type="text" placeholder = "enter code game"/>
     </>
   )
