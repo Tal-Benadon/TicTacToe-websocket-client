@@ -1,0 +1,24 @@
+@import '../../vars';
+
+P {
+    position: relative;
+    left: 45px;
+    top: 8px;
+    width: 80px;
+    background-color: transparentize($color: #ffffff, $amount: 0);
+}
+
+.InpotCod {
+    height: 30px;
+    border-radius: 10px;
+    border-left: 5px $BordersColor solid;
+    border-right: 2px $BordersColor solid;
+    border-bottom: 2px $BordersColor solid;
+    border-top: 2px $BordersColor solid;
+
+    box-shadow: -2px 2px 0px $ShadowColor;
+
+    &:focus {
+        outline: none;
+    }
+}

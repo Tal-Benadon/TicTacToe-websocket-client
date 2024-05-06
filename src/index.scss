@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+@import './vars';
+
+* {
+  font-family: Luckiest Guy, sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+html,
+body {
+  height: 100%;
+
+}
+
+
+body {
+  background-color: $MainBgColor;
+}
+
+#root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  height: 100%;
+  width: 100%;
+  padding: 20px;
+  @extend .flex-c;
+  gap: 24px;
+  border: $BordersColor solid 1px;
+}
+
+h2 {
+  -webkit-text-stroke: 1px $TitleTextBorderColor;
+  color: $TitleTextColor
+}

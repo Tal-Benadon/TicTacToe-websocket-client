@@ -1,9 +1,39 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import './index.css'
+import '../src/index.scss'
+
+import { createBrowserRouter, Router, RouterProvider } from 'react-router-dom'
+import Layout from './layout'
+import Welcome from './pages/Welcome'
+import Menu from './pages/Menu'
+import JoinGame from './pages/JoinGame'
+import ChoosePlayerPage from './pages/ChoosePlayerPage'
+
+const router = createBrowserRouter([
+  {
+    element: <Layout />, children: [
+      {
+        path: '/', element: <Welcome />
+      },
+      {
+        path: 'Menu', element: <Menu />
+      },
+      {
+        path: 'JoinGame', element: <JoinGame />
+      },
+      {
+        path: 'ChoosePlayer', element: <ChoosePlayerPage />
+      }
+
+    ]
+  },
+]
+)
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-  </React.StrictMode>,
+  <>
+
+    <RouterProvider router={router} />
+
+  </>
 )

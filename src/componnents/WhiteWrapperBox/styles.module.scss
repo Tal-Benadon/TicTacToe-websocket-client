@@ -1,0 +1,27 @@
+@import '../../vars';
+
+.wrapperContainer {
+    // margin-top: 50px; //TEMPORARY
+    background-color: $WrapperBgColor;
+    position: relative;
+    margin-left: 16px;
+    margin-right: 12px;
+    border-radius: 20px;
+    border: $BordersColor 6px solid;
+    -webkit-box-shadow: -10px 7px 0px -2px $ShadowColor;
+    -moz-box-shadow: -10px 7px 0px -2px $ShadowColor;
+    box-shadow: -10px 7px 0px -2px $ShadowColor;
+}
+
+h2 {
+    position: absolute;
+    left: calc(50% - 16px);
+    top: -5px;
+    transform: translateY(-50%) translateX(calc(-50% + 16px));
+
+
+    -webkit-text-stroke: 2px $TitleTextBorderColor;
+    font-size: 32px;
+
+    color: $TitleTextColor
+}

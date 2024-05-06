@@ -1,0 +1,31 @@
+@import '../../vars';
+
+.ButtonBack {
+    width: 50px;
+    height: 50px;
+    background-color: $MainButtonBgColor;
+    color: white;
+    font-size: 40px;
+    text-align: center;
+    border-top: none;
+    border-right: 2px solid $ButtonBorderColor;
+    border-left: 2px solid $ButtonBorderColor;
+    border-bottom: 3px solid $ButtonBorderColor;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.8s;
+
+
+    &:hover {
+        background-color: $ButtonBorderColor;
+        position: relative;
+        top: 20px;
+        left: 20px;
+    }
+
+    &:active {
+        background-color: $ButtonActiveColor;
+        transform: scale(0.99) translateY(0.2px);
+    }
+
+}
