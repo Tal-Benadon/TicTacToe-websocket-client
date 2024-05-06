@@ -3,23 +3,25 @@
     flex-direction: column;
     height: 100%;
 
-    .content {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
 
-        .OR {
-            display: flex;
-            justify-content: center;
-            align-items: center;
+}
 
-            .hr {
-                height: 1px;
-                flex: 1;
-                background-color: rgba(255, 255, 255, 1);
-            }
-        }
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.divider {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    hr {
+        height: 1px;
+        flex: 1;
+        background-color: rgba(255, 255, 255, 1);
     }
-
 }
