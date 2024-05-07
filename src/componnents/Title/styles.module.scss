@@ -1,0 +1,8 @@
+@import '../../vars';
+
+.title {
+    text-align: center;
+    font-size: 48px;
+    filter: drop-shadow(5px 6px 25px $IconFilter);
+    // padding: 8px 0 8px 0;
+}

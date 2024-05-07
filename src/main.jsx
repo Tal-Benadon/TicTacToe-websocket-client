@@ -8,6 +8,7 @@ import Welcome from './pages/Welcome'
 import Menu from './pages/Menu'
 import JoinGame from './pages/JoinGame'
 import ChoosePlayerPage from './pages/ChoosePlayerPage'
+import ButtonBack from './componnents/ButtonBack'
 
 const router = createBrowserRouter([
   {
@@ -19,12 +20,15 @@ const router = createBrowserRouter([
         path: 'Menu', element: <Menu />
       },
       {
-        path: 'JoinGame', element: <JoinGame />
+        element: <ButtonBack />, children: [
+          {
+            path: 'JoinGame', element: <JoinGame />
+          },
+          {
+            path: 'ChoosePlayer', element: <ChoosePlayerPage />
+          }
+        ]
       },
-      {
-        path: 'ChoosePlayer', element: <ChoosePlayerPage />
-      }
-
     ]
   },
 ]
