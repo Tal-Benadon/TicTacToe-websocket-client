@@ -12,7 +12,7 @@
 html,
 body {
   height: 100%;
-
+  position: relative;
 }
 
 
@@ -36,6 +36,6 @@ body {
 }
 
 h2 {
-  -webkit-text-stroke: 1px $TitleTextBorderColor;
+  -webkit-text-stroke: 2px $TitleTextBorderColor;
   color: $TitleTextColor
 }
