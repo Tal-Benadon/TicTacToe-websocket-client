@@ -4,17 +4,17 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-export default function Button({text="PLAY SOLO", Navigate}) {
+export default function Button({ text = "PLAY SOLO", Navigate, style = {} }) {
 
-const nav = useNavigate()
-const handelNav =()=>{
-  nav(Navigate)
-}
+  const nav = useNavigate()
+  const handelNav = () => {
+    nav(Navigate)
+  }
   return (
-  <>
-  <button className={styles.Button} onClick={()=>handelNav()}>
-   {text}
-  </button>
-  </>
+    <>
+      <button className={styles.Button} style={{ ...style }} onClick={() => handelNav()}>
+        {text}
+      </button>
+    </>
   )
 }
