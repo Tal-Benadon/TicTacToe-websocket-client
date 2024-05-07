@@ -23,7 +23,7 @@ export default function ChoosePlayerPage() {
                     </WhiteWrapperBox>
                 </div>
 
-                <Button text={'LETS PLAY'} style={
+                <Button Navigate={'/GameBoard'} text={'LETS PLAY'} style={
                     {
                         height: '80px',
                         width: 'fit-content',
@@ -31,6 +31,7 @@ export default function ChoosePlayerPage() {
                         padding: '0 2rem 0 2rem',
                         opacity: !isClicked ? 0 : 1
                     }
+
                 } />
             </div>
         </div>

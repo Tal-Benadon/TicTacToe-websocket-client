@@ -9,6 +9,7 @@ import Menu from './pages/Menu'
 import JoinGame from './pages/JoinGame'
 import ChoosePlayerPage from './pages/ChoosePlayerPage'
 import ButtonBack from './componnents/ButtonBack'
+import GameBoardPage from './pages/GameBoardPage'
 
 const router = createBrowserRouter([
   {
@@ -26,9 +27,12 @@ const router = createBrowserRouter([
           },
           {
             path: 'ChoosePlayer', element: <ChoosePlayerPage />
-          }
+          },
         ]
       },
+      {
+        path: 'GameBoard', element: <GameBoardPage />
+      }
     ]
   },
 ]
