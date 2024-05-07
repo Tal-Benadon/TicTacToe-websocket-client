@@ -3,6 +3,7 @@ import styles from './style.module.scss';
 import Button from '../../componnents/Button';
 
 export default function Menu() {
+    
     return (
         <div className={styles.menuContainer}>
             <div className={styles.Menu}>

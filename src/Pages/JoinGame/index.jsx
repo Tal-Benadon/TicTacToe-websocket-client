@@ -13,7 +13,7 @@ export default function JoinGame() {
 
                 <InputCod />
 
-                <Button text='JOIN' />
+                <Button text='JOIN' style={{ width: '125px' , Height: '50px' }} />
 
                 <div className={styles.divider}>
                     <hr />
