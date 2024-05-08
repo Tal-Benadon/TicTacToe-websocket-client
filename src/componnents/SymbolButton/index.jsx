@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import styles from './styles.module.scss'
-export default function SymbolButton({ turn, setTurn, id, symbol = '', chosen, setChosen, isClicked, setIsClicked, isGameBoard, location, clicked }) {
+import { useBoardStore, useTurnStore } from '../../store'
+export default function SymbolButton({ id, symbol = '', chosen, setChosen, isClicked, setIsClicked, isGameBoard, location, clicked, buttonValue }) {
     const [isInactived, setIsInactived] = useState(false)
     const [isActive, setIsActive] = useState(false)
     const [gameSymbol, setGameSymbol] = useState('')
     const [isGameClicked, setIsGameClicked] = useState(false)
+
+    const turn = useTurnStore((state) => state.turn)
+    const setTurn = useTurnStore((state) => state.setTurn)
+    const updateSymbol = useBoardStore((state) => state.updateSymbol)
     useEffect(() => {
         if (isClicked === true && chosen !== id) {
             setIsInactived(true)
@@ -21,16 +26,17 @@ export default function SymbolButton({ turn, setTurn, id, symbol = '', chosen, s
     }
 
 
-
     const handleGameClick = () => {
         if (!turn && !isGameClicked) {
             setGameSymbol('X')
             setIsGameClicked(true)
-            setTurn(!turn)
+            updateSymbol(location[0], location[1], 'X')
+            setTurn()
         } else if (turn && !isGameClicked) {
             setGameSymbol('O')
             setIsGameClicked(true)
-            setTurn(!turn)
+            updateSymbol(location[0], location[1], 'O')
+            setTurn()
         }
     }
     const symbolHandle = (symbol) => {
