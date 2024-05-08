@@ -10,6 +10,7 @@ import JoinGame from './pages/JoinGame'
 import ChoosePlayerPage from './pages/ChoosePlayerPage'
 import ButtonBack from './componnents/ButtonBack'
 import GameBoardPage from './pages/GameBoardPage'
+import Waiting from './pages/Waiting'
 
 const router = createBrowserRouter([
   {
@@ -27,7 +28,7 @@ const router = createBrowserRouter([
           },
           {
             path: 'ChoosePlayer', element: <ChoosePlayerPage />
-          },
+          }
         ]
       },
       {
