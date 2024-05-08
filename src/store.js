@@ -10,7 +10,6 @@ export const useBoardStore = create((set, get) => ({
             for (let j = 0; j < get().iterations; j++) {
                 buttonRow.push({
                     symbol: '',
-                    location: [i, j]
                 })
             }
             gameBoard.push(buttonRow)
@@ -23,6 +22,12 @@ export const useBoardStore = create((set, get) => ({
             gameBoard[row][col].symbol = symbol
             set({ gameBoard: [...gameBoard] })
         }
+    },
+
+    checkBoard: (row, col) => {
+        let gameBoard = get().gameBoard
+        console.log(gameBoard[row]);
+
     }
 
 }))

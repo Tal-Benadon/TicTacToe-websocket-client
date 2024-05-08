@@ -6,10 +6,13 @@ export default function SymbolButton({ id, symbol = '', chosen, setChosen, isCli
     const [isActive, setIsActive] = useState(false)
     const [gameSymbol, setGameSymbol] = useState('')
     const [isGameClicked, setIsGameClicked] = useState(false)
-
     const turn = useTurnStore((state) => state.turn)
     const setTurn = useTurnStore((state) => state.setTurn)
     const updateSymbol = useBoardStore((state) => state.updateSymbol)
+    const checkBoard = useBoardStore((state) => state.checkBoard)
+
+
+
     useEffect(() => {
         if (isClicked === true && chosen !== id) {
             setIsInactived(true)
@@ -31,11 +34,13 @@ export default function SymbolButton({ id, symbol = '', chosen, setChosen, isCli
             setGameSymbol('X')
             setIsGameClicked(true)
             updateSymbol(location[0], location[1], 'X')
+            checkBoard(location[0], location[1])
             setTurn()
         } else if (turn && !isGameClicked) {
             setGameSymbol('O')
             setIsGameClicked(true)
             updateSymbol(location[0], location[1], 'O')
+            checkBoard(location[0], location[1])
             setTurn()
         }
     }

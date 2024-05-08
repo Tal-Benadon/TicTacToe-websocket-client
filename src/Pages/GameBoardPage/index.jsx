@@ -25,11 +25,14 @@ export default function GameBoardPage() {
                     gap: '5px',
                 }
             }>
-                {gameBoard.map((row, index) => {
-                    return <div key={index} className={styles.rowDiv}>
-                        {row.map((cell, index) => {
+                {gameBoard.map((row, rowIndex) => {
+
+
+                    return <div key={rowIndex} className={styles.rowDiv}>
+                        {row.map((cell, columnIndex) => {
+                            let location = [rowIndex, columnIndex]
                             return (
-                                <SymbolButton key={index} isGameBoard={true} buttonValue={cell.symbol} location={cell.location} />
+                                <SymbolButton key={columnIndex} isGameBoard={true} buttonValue={cell.symbol} location={location} />
                             )
                         })}
                     </div>
