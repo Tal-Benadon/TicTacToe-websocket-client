@@ -9,7 +9,7 @@ export default function Menu() {
             <div className={styles.Menu}>
                 <img src="620af74ff1676949d91804882a8c5bab.png" alt="" />
                 <div className={styles.Buttons}>
-                    <Button text='PLAY SOLO' />
+                    <Button text='PLAY SOLO'  Navigate={'/ChoosePlayer'}/>
 
                     <Button text='PLAY WITH FRIEND' Navigate={'/JoinGame'} />
                 </div>

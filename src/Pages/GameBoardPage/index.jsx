@@ -7,6 +7,7 @@ export default function GameBoardPage() {
 
     const createGameBoard = useBoardStore((state) => state.createBoard)
     const gameBoard = useBoardStore((state) => state.gameBoard)
+    const checkBoard = useBoardStore((state) => state.checkBoard)
 
     useEffect(() => {
         createGameBoard()
@@ -29,7 +30,12 @@ export default function GameBoardPage() {
                     return <div key={index} className={styles.rowDiv}>
                         {row.map((cell, index) => {
                             return (
-                                <SymbolButton key={index} isGameBoard={true} buttonValue={cell.symbol} location={cell.location} />
+                                <SymbolButton 
+                                
+                                key={index}
+                                 isGameBoard={true}
+                                 buttonValue={cell.symbol} 
+                                location={cell.location} />
                             )
                         })}
                     </div>

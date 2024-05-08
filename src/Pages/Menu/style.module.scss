@@ -4,11 +4,11 @@
 
 .Menu {
     height: 100%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex: 1;
 
     img {
         position: fixed;
@@ -19,7 +19,7 @@
         filter: drop-shadow(5px 6px 25px cyan);
     }
 
-    .Buttons {
+    &.Buttons {
         width: 100%;
         display: flex;
         flex-direction: column;

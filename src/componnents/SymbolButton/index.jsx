@@ -22,6 +22,7 @@ export default function SymbolButton({ id, symbol = '', chosen, setChosen, isCli
         setChosen(id)
         setIsClicked(true)
         setIsActive(true)
+        
 
     }
 
@@ -31,6 +32,7 @@ export default function SymbolButton({ id, symbol = '', chosen, setChosen, isCli
             setGameSymbol('X')
             setIsGameClicked(true)
             updateSymbol(location[0], location[1], 'X')
+            
             setTurn()
         } else if (turn && !isGameClicked) {
             setGameSymbol('O')
