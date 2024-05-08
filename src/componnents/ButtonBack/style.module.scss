@@ -2,6 +2,8 @@
 
 .ButtonBack {
     position: absolute;
+    margin-left: 20px;
+    margin-top: 20px;
     width: 50px;
     height: 50px;
     background-color: $MainButtonBgColor;
@@ -9,9 +11,9 @@
     font-size: 40px;
     text-align: center;
     border-top: none;
-    border-right: 2px solid $ButtonBorderColor;
-    border-left: 2px solid $ButtonBorderColor;
-    border-bottom: 3px solid $ButtonBorderColor;
+    border-right: 1px solid $ButtonBorderColor;
+    border-left: 1px solid $ButtonBorderColor;
+    border-bottom: 5px solid $ButtonBorderColor;
     border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.8s;
@@ -19,9 +21,6 @@
 
     &:hover {
         background-color: $ButtonBorderColor;
-        position: relative;
-        top: 20px;
-        left: 20px;
     }
 
     &:active {

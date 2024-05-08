@@ -2,15 +2,17 @@
 
 .Button {
     color: $TitleTextColor;
-    -webkit-text-stroke: $ButtonTextBorderColor 1.2px;
+    -webkit-text-stroke: $ButtonTextBorderColor 1px;
     font-size: 20px;
     background-color: $MainButtonBgColor;
     text-align: center;
     border-top: none;
-    border-right: 4px solid $ButtonBorderColor;
-    border-left: 4px solid $ButtonBorderColor;
-    border-bottom: 8px solid $ButtonBorderColor;
+    border-right: 3px solid $ButtonBorderColor;
+    border-left: 3px solid $ButtonBorderColor;
+    border-bottom: 5px solid $ButtonBorderColor;
     border-radius: 30px;
+    margin-top:20px;
+    margin-bottom:20px;
     width: 100%;
     height: 60px;
     cursor: pointer;
