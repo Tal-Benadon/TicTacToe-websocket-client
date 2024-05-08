@@ -8,8 +8,8 @@ import Welcome from './pages/Welcome'
 import Menu from './pages/Menu'
 import JoinGame from './pages/JoinGame'
 import ChoosePlayerPage from './pages/ChoosePlayerPage'
-import ButtonBack from './componnents/ButtonBack'
 import GameBoardPage from './pages/GameBoardPage'
+import ButtonBack from './componnents/ButtonBack'
 import Waiting from './pages/Waiting'
 
 const router = createBrowserRouter([

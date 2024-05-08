@@ -27,16 +27,6 @@
 
         color: $TitleTextColor
     }
-    &>.cod {
-        text-align: center;
-        letter-spacing: 20px; 
-        justify-content: center;
-        position: relative;
-        top: 10px;
-        left: 6px;
-        color: rgba(205, 205, 205, 1);
-        font-size: 45px;
-        -webkit-text-stroke: 3px $TitleTextBorderColor;
-      }
-      
+
+
 }
