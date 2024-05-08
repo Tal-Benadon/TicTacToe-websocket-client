@@ -21,7 +21,7 @@ export default function JoinGame() {
                     <hr />
                 </div>
 
-                <Button text='CREATE A GAME' />
+                <Button text='CREATE A GAME' Navigate={'/Waiting'} />
             </div>
         </div>
     )
