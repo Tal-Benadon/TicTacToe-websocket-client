@@ -28,6 +28,9 @@ const router = createBrowserRouter([
           },
           {
             path: 'ChoosePlayer', element: <ChoosePlayerPage />
+          },
+          {
+            path: 'Waiting', element: <Waiting />
           }
         ]
       },
