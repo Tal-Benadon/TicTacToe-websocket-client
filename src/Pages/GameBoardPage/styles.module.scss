@@ -1,9 +1,23 @@
+@import '../../vars';
+
 .boardContainer {
     flex: 1;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
+    gap: 2rem;
 }
 
 .rowDiv {
     display: flex;
     gap: 5px;
+}
+
+
+
+.buttonDiv {
+    display: flex;
+    justify-content: center;
 }

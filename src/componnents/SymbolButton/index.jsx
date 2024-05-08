@@ -10,8 +10,36 @@ export default function SymbolButton({ id, symbol = '', chosen, setChosen, isCli
     const setTurn = useTurnStore((state) => state.setTurn)
     const updateSymbol = useBoardStore((state) => state.updateSymbol)
     const checkBoard = useBoardStore((state) => state.checkBoard)
+    const gameWinner = useBoardStore((state) => state.gameWinner)
+    const gameEnded = useBoardStore((state) => state.gameEnded)
+    const winningLine = useBoardStore((state) => state.winningLine)
+    const resetGame = useBoardStore((state) => state.resetGame)
 
+    // console.log(winningLine.includes(location)); 
 
+    function includesSubArray(mainArray, subArray) {
+        return mainArray.some(element =>
+            Array.isArray(element) &&
+            element.length === subArray.length &&
+            element.every((value, index) => value === subArray[index])
+        );
+    }
+
+    useEffect(() => {
+        if (isGameBoard) {
+
+            if (!includesSubArray(winningLine, location))
+                setIsInactived(true)
+        }
+
+    }, [gameEnded])
+
+    useEffect(() => {
+
+        setIsInactived(false)
+        resetGame()
+
+    }, [])
 
     useEffect(() => {
         if (isClicked === true && chosen !== id) {
@@ -30,17 +58,21 @@ export default function SymbolButton({ id, symbol = '', chosen, setChosen, isCli
 
 
     const handleGameClick = () => {
+        if (gameEnded) {
+            return
+        }
         if (!turn && !isGameClicked) {
             setGameSymbol('X')
             setIsGameClicked(true)
             updateSymbol(location[0], location[1], 'X')
-            checkBoard(location[0], location[1])
+            checkBoard(location[0], location[1], 'X')
             setTurn()
         } else if (turn && !isGameClicked) {
+
             setGameSymbol('O')
             setIsGameClicked(true)
             updateSymbol(location[0], location[1], 'O')
-            checkBoard(location[0], location[1])
+            checkBoard(location[0], location[1], 'O')
             setTurn()
         }
     }
