@@ -1,24 +1,18 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './styles.module.scss'
 import WhiteWrapperBox from '../../componnents/WhiteWrapperBox'
 import SymbolButton from '../../componnents/SymbolButton'
+import { useBoardStore } from '../../store'
 export default function GameBoardPage() {
-    const [turn, setTurn] = useState(false)
 
-    let buttonId = 0
-    let iterations = 3
-    let mappedButtons = []
-    for (let i = 0; i < iterations; i++) {
-        let buttonRow = []
-        for (let j = 0; j < iterations; j++) {
+    const createGameBoard = useBoardStore((state) => state.createBoard)
+    const gameBoard = useBoardStore((state) => state.gameBoard)
 
-            buttonRow.push({
-                location: [i, j],
-            })
-        }
-        mappedButtons.push(buttonRow)
-    }
-    console.log(mappedButtons);
+    useEffect(() => {
+        createGameBoard()
+    }, [])
+
+
     return (
         <div className={styles.boardContainer}>
             <h2>headerPlaceHolder</h2>
@@ -31,12 +25,11 @@ export default function GameBoardPage() {
                     gap: '5px',
                 }
             }>
-                {mappedButtons.map(row => {
-                    return <div key={buttonId} className={styles.rowDiv}>
-                        {row.map(cell => {
-                            buttonId++
+                {gameBoard.map((row, index) => {
+                    return <div key={index} className={styles.rowDiv}>
+                        {row.map((cell, index) => {
                             return (
-                                <SymbolButton key={buttonId} id={buttonId} isGameBoard={true} location={cell.location} turn={turn} setTurn={setTurn} />
+                                <SymbolButton key={index} isGameBoard={true} buttonValue={cell.symbol} location={cell.location} />
                             )
                         })}
                     </div>
