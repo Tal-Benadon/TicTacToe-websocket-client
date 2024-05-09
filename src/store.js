@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-
+import io from 'socket.io-client'
 export const useBoardStore = create((set, get) => ({
     iterations: 3,
     gameWinner: '',
@@ -79,4 +79,8 @@ export const useBoardStore = create((set, get) => ({
 export const useTurnStore = create((set, get) => ({
     turn: false,
     setTurn: () => set(state => ({ turn: !state.turn }))
+}))
+
+export const useSocketStore = create((set, get) => ({
+    socket: io('http://localhost:3000')
 }))

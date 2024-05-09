@@ -3,10 +3,24 @@ import styles from './style.module.scss';
 
 import WhiteWarpperBox from '../../componnents/WhiteWrapperBox'
 import Loading from '../../componnents/Loading'
+import { useSocketStore } from '../../store';
 
 
 export default function Waiting() {
     const [newCod, setNewCod] = useState()
+
+    const socket = useSocketStore((state) => state.socket)
+
+
+    useEffect(() => {
+        socket.emit('create-game')
+        socket.on('create-game', ({ id }) => {
+            console.log(id);
+        })
+    }, [])
+    // socket.on("create-game", (roomNumber) => {
+
+    // })
 
     useEffect(() => {
         const randomCod = () => {

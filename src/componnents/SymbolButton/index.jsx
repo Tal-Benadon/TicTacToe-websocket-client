@@ -68,7 +68,6 @@ export default function SymbolButton({ id, symbol = '', chosen, setChosen, isCli
             checkBoard(location[0], location[1], 'X')
             setTurn()
         } else if (turn && !isGameClicked) {
-
             setGameSymbol('O')
             setIsGameClicked(true)
             updateSymbol(location[0], location[1], 'O')
