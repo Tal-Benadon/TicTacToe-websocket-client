@@ -4,7 +4,7 @@ import SymbolButton from '../../componnents/SymbolButton'
 import WhiteWrapperBox from '../../componnents/WhiteWrapperBox'
 import Title from '../../componnents/Title'
 import Button from '../../componnents/Button'
-export default function ChoosePlayerPage() {
+export default function ChoosePlayerPageCopy() {
     const [chosen, setChosen] = useState(null)
     const [isClicked, setIsClicked] = useState(false)
 

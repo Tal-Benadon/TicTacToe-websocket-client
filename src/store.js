@@ -7,6 +7,7 @@ export const useBoardStore = create((set, get) => ({
     resetGame: () => set({ gameEnded: false }),
     gameBoard: [],
     winningLine: [],
+
     createBoard: () => {
         let gameBoard = []
         for (let i = 0; i < get().iterations; i++) {
@@ -14,6 +15,8 @@ export const useBoardStore = create((set, get) => ({
             for (let j = 0; j < get().iterations; j++) {
                 buttonRow.push({
                     symbol: '',
+                    isPlayed: false,
+                    animationTrigger: 0,
                     location: [i, j]
                 })
             }
@@ -23,8 +26,14 @@ export const useBoardStore = create((set, get) => ({
     },
     updateSymbol: (row, col, symbol) => {
         let gameBoard = get().gameBoard
+
         if (gameBoard[row] && gameBoard[row][col]) {
+            if (gameBoard[row][col].isPlayed === true) {
+                get().triggerReanimation(row, col)
+                return
+            }
             gameBoard[row][col].symbol = symbol
+            gameBoard[row][col].isPlayed = true
             set({ gameBoard: [...gameBoard] })
         }
     },
@@ -71,8 +80,21 @@ export const useBoardStore = create((set, get) => ({
             set({ winningLine: cross2.map(value => value.location) })
             return
         }
-    }
+    },
 
+    triggerReanimation: (row, col) => {
+        let gameBoard = get().gameBoard
+        const newBoard = gameBoard.map((r, rIndex) =>
+            r.map((cell, cIndex) => {
+                if (rIndex === row && cIndex === col) {
+
+                    return { ...cell, animationTrigger: cell.animationTrigger + 1 };
+                }
+                return cell;
+            })
+        );
+        set({ gameBoard: newBoard });
+    },
 }))
 
 
