@@ -3,11 +3,19 @@ import io from 'socket.io-client'
 export const useBoardStore = create((set, get) => ({
     iterations: 3,
     gameWinner: '',
+    resetGameWinner: () => ({ gameWinner: '' }),
     gameEnded: false,
     resetGame: () => set({ gameEnded: false }),
     gameBoard: [],
     winningLine: [],
-
+    updateEndGameBoard: (row, col) => {
+        let gameBoard = get().gameBoard
+        if (gameBoard[row] && gameBoard[row][col]) {
+            gameBoard[row][col].isInactive = true
+            set({ gameBoard: [...gameBoard] })
+        }
+    },
+    setGameBoard: (newBoard) => ({ gameBoard: newBoard }),
     createBoard: () => {
         let gameBoard = []
         for (let i = 0; i < get().iterations; i++) {
@@ -15,8 +23,8 @@ export const useBoardStore = create((set, get) => ({
             for (let j = 0; j < get().iterations; j++) {
                 buttonRow.push({
                     symbol: '',
-                    isPlayed: false,
                     animationTrigger: 0,
+                    isInactive: false,
                     location: [i, j]
                 })
             }
@@ -103,6 +111,6 @@ export const useTurnStore = create((set, get) => ({
     setTurn: () => set(state => ({ turn: !state.turn }))
 }))
 
-export const useSocketStore = create((set, get) => ({
-    socket: io('http://localhost:3000')
-}))
+// export const useSocketStore = create((set, get) => ({
+//     // socket: io('http://localhost:3000')
+// }))

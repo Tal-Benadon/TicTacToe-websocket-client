@@ -23,74 +23,74 @@
 
 }
 
-.o {
-    width: 100%;
-    height: 100%;
+// .o {
+//     width: 100%;
+//     height: 100%;
 
-    &.active {
-        animation: symbolPress 0.8s forwards ease-in-out;
-    }
+//     &.active {
+//         animation: symbolPress 0.8s forwards ease-in-out;
+//     }
 
-    &.oActive {
-        animation: gamePress 0.5s forwards ease-out;
-    }
-}
+//     &.oActive {
+//         animation: gamePress 0.5s forwards ease-out;
+//     }
+// }
 
-.x {
-    width: 100%;
-    height: 100%;
+// .x {
+//     width: 100%;
+//     height: 100%;
 
-    &.active {
-        animation: symbolPress 0.7s forwards ease-out;
-    }
-
-
-    &.xActive {
-        animation: gamePress 0.5s forwards ease-out;
-    }
-}
+//     &.active {
+//         animation: symbolPress 0.7s forwards ease-out;
+//     }
 
 
-@keyframes symbolPress {
-    0% {
-        scale: 1.0;
-    }
+//     &.xActive {
+//         animation: gamePress 0.5s forwards ease-out;
+//     }
+// }
 
-    25% {
-        scale: 0.8;
-    }
 
-    50% {
-        scale: 1.5;
-    }
+// @keyframes symbolPress {
+//     0% {
+//         scale: 1.0;
+//     }
 
-    75% {
-        scale: 1.0;
-    }
+//     25% {
+//         scale: 0.8;
+//     }
 
-    100% {
-        scale: 1.3;
-    }
-}
+//     50% {
+//         scale: 1.5;
+//     }
 
-@keyframes gamePress {
-    0% {
-        scale: 1.0;
-    }
+//     75% {
+//         scale: 1.0;
+//     }
 
-    25% {
-        scale: 0.8;
-    }
+//     100% {
+//         scale: 1.3;
+//     }
+// }
 
-    50% {
-        scale: 1.3;
-    }
+// @keyframes gamePress {
+//     0% {
+//         scale: 1.0;
+//     }
 
-    75% {
-        scale: 0.9;
-    }
+//     25% {
+//         scale: 0.8;
+//     }
 
-    100% {
-        scale: 1.0;
-    }
-}
+//     50% {
+//         scale: 1.3;
+//     }
+
+//     75% {
+//         scale: 0.9;
+//     }
+
+//     100% {
+//         scale: 1.0;
+//     }
+// }

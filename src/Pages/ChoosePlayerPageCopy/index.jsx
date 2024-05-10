@@ -4,9 +4,18 @@ import SymbolButton from '../../componnents/SymbolButton'
 import WhiteWrapperBox from '../../componnents/WhiteWrapperBox'
 import Title from '../../componnents/Title'
 import Button from '../../componnents/Button'
+import SymbolButtonCopy from '../../componnents/SymbolButtonCopy'
 export default function ChoosePlayerPageCopy() {
-    const [chosen, setChosen] = useState(null)
-    const [isClicked, setIsClicked] = useState(false)
+    const [chosen, setChosen] = useState('')
+
+    const onChoiceClickHandle = (symbol) => {
+        setChosen(symbol)
+
+    }
+    const getClassName = (symbol) => {
+        const isActive = chosen === symbol ? styles.active : ''
+        return `${styles.symbol} ${isActive}`
+    }
 
 
     return (
@@ -19,21 +28,19 @@ export default function ChoosePlayerPageCopy() {
                 <WhiteWrapperBox style={
                     { padding: '16px', display: 'flex', gap: '18px' }
                 }>
-                    <SymbolButton
+                    <SymbolButtonCopy
                         symbol={"O"}
-                        chosen={chosen}
-                        setChosen={setChosen}
-                        isClicked={isClicked}
-                        setIsClicked={setIsClicked}
-                        id={"O"}
+                        onClick={() => onChoiceClickHandle("O")}
+                        className={getClassName("O")}
+                        isInactive={chosen && chosen !== "O"}
                     />
-                    <SymbolButton
+                    <SymbolButtonCopy
                         symbol={"X"}
-                        chosen={chosen}
-                        setChosen={setChosen}
-                        isClicked={isClicked}
-                        setIsClicked={setIsClicked}
-                        id={"X"}
+                        onClick={() => onChoiceClickHandle("X")}
+                        className={getClassName("X")}
+                        isInactive={chosen && chosen !== "X"}
+
+
                     />
                 </WhiteWrapperBox>
             </div>
@@ -45,8 +52,8 @@ export default function ChoosePlayerPageCopy() {
                     width: 'fit-content',
                     fontSize: '28px',
                     padding: '0 2rem 0 2rem',
-                    opacity: !isClicked ? 0 : 1,
-                    pointerEvents: !isClicked ? 'none' : ''
+                    opacity: !chosen ? 0 : 1,
+                    pointerEvents: !chosen ? 'none' : ''
                 }
 
             } />

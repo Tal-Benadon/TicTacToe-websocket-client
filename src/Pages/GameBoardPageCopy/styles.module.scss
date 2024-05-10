@@ -21,3 +21,60 @@
     display: flex;
     justify-content: center;
 }
+
+.symbol {
+    width: 100%;
+    height: 100%;
+
+    &.active {
+        animation: symbolPress 0.8s forwards ease-in-out;
+    }
+
+    &.xActive {
+        animation: gamePress 0.5s forwards ease-out;
+    }
+}
+
+@keyframes symbolPress {
+    0% {
+        scale: 1.0;
+    }
+
+    25% {
+        scale: 0.8;
+    }
+
+    50% {
+        scale: 1.5;
+    }
+
+    75% {
+        scale: 1.0;
+    }
+
+    100% {
+        scale: 1.3;
+    }
+}
+
+@keyframes gamePress {
+    0% {
+        scale: 1.0;
+    }
+
+    25% {
+        scale: 0.8;
+    }
+
+    50% {
+        scale: 1.3;
+    }
+
+    75% {
+        scale: 0.9;
+    }
+
+    100% {
+        scale: 1.0;
+    }
+}
