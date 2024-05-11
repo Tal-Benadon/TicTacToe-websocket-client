@@ -12,14 +12,15 @@
     flex: 1;
 }
 
-.cod {
+.code {
+    display: flex;
+    height: 100%;
     text-align: center;
     letter-spacing: 20px;
     justify-content: center;
-    position: absolute;
-    top: 10px;
-    left: 6px;
-    color: rgba(205, 205, 205, 1);
+    align-items: center;
+    color: $JoinCodeColor;
     font-size: 45px;
+    padding-inline-start: 20px;
     -webkit-text-stroke: 3px $TitleTextBorderColor;
 }

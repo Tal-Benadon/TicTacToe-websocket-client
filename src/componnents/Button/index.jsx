@@ -4,15 +4,12 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-export default function Button({ text = "PLAY SOLO", Navigate, style = {} }) {
+export default function Button({ text = "PLAY SOLO", style = {}, onClick, type = 'button' }) {
 
-  const nav = useNavigate()
-  const handelNav = () => {
-    nav(Navigate)
-  }
+
   return (
     <>
-      <button className={styles.Button} style={{ ...style }} onClick={() => handelNav()}>
+      <button type={type} className={styles.Button} style={{ ...style }} onClick={onClick}>
         {text}
       </button>
     </>

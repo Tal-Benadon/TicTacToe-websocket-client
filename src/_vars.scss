@@ -1,5 +1,6 @@
 :root {
     --icon-shadow-filter: cyan;
+    --join-code-color: rgb(205, 205, 205);
     --shadow-color: rgba(0, 0, 0, 1);
     --main-bg-color: #3d7ad6;
     --borders-color: black;
@@ -16,6 +17,7 @@
     --inactive-icon-color: #9B9B9B;
 }
 
+$JoinCodeColor: var(--join-code-color);
 $ButtonTextColor: var(--button-text-color);
 $ButtonActiveColor: var(--button-active-color);
 $ButtonBorderColor: var(--button-border-color);

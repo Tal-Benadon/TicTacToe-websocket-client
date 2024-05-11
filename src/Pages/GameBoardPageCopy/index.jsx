@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import styles from './styles.module.scss'
 import WhiteWrapperBox from '../../componnents/WhiteWrapperBox'
-// import SymbolButton from '../../componnents/SymbolButton'
 import { useBoardStore, useTurnStore } from '../../store'
 import Button from '../../componnents/Button'
 import SymbolButtonCopy from '../../componnents/SymbolButtonCopy'
 import { useNavigate } from 'react-router-dom'
+import BoardHeader from '../../componnents/boardHeader'
 export default function GameBoardPageCopy() {
     const [turn, setTurn] = useState(false)
-    const navigate = useNavigate()
     const createGameBoard = useBoardStore((state) => state.createBoard)
     const gameBoard = useBoardStore((state) => state.gameBoard)
     const gameEnded = useBoardStore((state) => state.gameEnded)
@@ -18,6 +17,10 @@ export default function GameBoardPageCopy() {
     const updateEndGameBoard = useBoardStore((state) => state.updateEndGameBoard)
     const resetGame = useBoardStore((state) => state.resetGame)
     const resetGameWinner = useBoardStore((state) => state.resetGameWinner)
+    const iterations = useBoardStore((state) => state.iterations)
+
+
+
     useEffect(() => {
 
         createGameBoard()
@@ -37,7 +40,12 @@ export default function GameBoardPageCopy() {
         }
     }, [gameEnded])
 
-
+    const onPlayAgainClick = () => {
+        setTurn(false)
+        resetGame()
+        resetGameWinner()
+        createGameBoard()
+    }
 
     const includesSubArray = (mainArray, subArray) => {
         return mainArray.some(element =>
@@ -66,52 +74,74 @@ export default function GameBoardPageCopy() {
     }
 
     const getClassName = (symbol) => {
-        // console.log(symbol);
         const isActive = symbol ? styles.xActive : ''
-        // console.log(`${styles.symbol} ${isActive}`);
         return `${styles.symbol} ${isActive}`
     }
 
 
     return (
         <div className={styles.boardContainer}>
-            <div>
-                <h2 style={{ fontSize: '40px' }}>Header </h2>
+            <div className={styles.headerContainer}>
+                <BoardHeader />
             </div>
-            <div style={{ width: '100%' }}>
-                <WhiteWrapperBox style={
-                    {
-                        display: 'flex',
-                        justifyContent: 'center',
-                        flexDirection: 'column',
-                        padding: '16px',
-                        gap: '5px',
-                    }
-                }>
-                    {gameBoard.map((row, rowIndex) => {
-                        return <div key={rowIndex} className={styles.rowDiv}>
-                            {row.map((cell, columnIndex) => {
-                                let location = [rowIndex, columnIndex]
-                                return (
-                                    <SymbolButtonCopy key={columnIndex}
-                                        symbol={cell.symbol}
-                                        onClick={() => handleOnButtonClick(location)}
-                                        isInactive={cell.isInactive}
-                                        className={getClassName(cell.symbol)}
-                                    />
-                                )
-                            })}
-                        </div>
-                    })}
-                </WhiteWrapperBox>
+            <div className={styles.screenCntr}>
+                <div style={{ width: '100%' }}>
+                    <WhiteWrapperBox style={
+                        {
+                            display: 'flex',
+                            justifyContent: 'center',
+                            flexDirection: 'column',
+                            padding: '16px',
+                            gap: '5px',
+                        }
+                    }>
+                        {gameBoard.map((row, rowIndex) => {
+                            return <div key={rowIndex} className={styles.rowDiv}>
+                                {row.map((cell, columnIndex) => {
+                                    let location = [rowIndex, columnIndex]
+                                    return (
+                                        <SymbolButtonCopy key={columnIndex}
+                                            symbol={cell.symbol}
+                                            onClick={() => handleOnButtonClick(location)}
+                                            isInactive={cell.isInactive}
+                                            className={getClassName(cell.symbol)}
+                                        />
+                                    )
+                                })}
+                            </div>
+                        })}
+                    </WhiteWrapperBox>
+                </div>
             </div>
+            {
+                gameEnded ?
+                    <div className={styles.endBtns}>
+                        <Button text={'PLAY AGAIN'} onClick={onPlayAgainClick} style={{
+                            height: '60px',
+                            width: '250px',
+                            fontSize: '28px',
+                        }} />
+                        <Button text={'BACK TO MAIN'} style={{
+                            height: '60px',
+                            width: '250px',
+                            fontSize: '28px',
+                            whiteSpace: 'nowrap',
+                            textAlign: 'center',
+                            overflow: 'hidden'
 
-            <Button text={'back'} Navigate={'/Menu'} style={{
-                height: '85px',
-                width: 'fit-content',
-                padding: '0px 5rem',
-                fontSize: '28px',
-            }} />
+                        }} />
+                    </div>
+                    :
+                    <div className={styles.btn}>
+                        <Button text={'BACK'} style={{
+                            height: '85px',
+                            width: 'fit-content',
+                            padding: '0px 5rem',
+                            fontSize: '28px',
+                        }} />
+                    </div>
+
+            }
 
         </div>
     )

@@ -111,6 +111,6 @@ export const useTurnStore = create((set, get) => ({
     setTurn: () => set(state => ({ turn: !state.turn }))
 }))
 
-// export const useSocketStore = create((set, get) => ({
-//     // socket: io('http://localhost:3000')
-// }))
+export const useSocketStore = create((set, get) => ({
+    socket: io('http://localhost:3000')
+}))

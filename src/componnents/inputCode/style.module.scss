@@ -1,25 +1,30 @@
 @import '../../vars';
 
-P {
-    position: relative;
-    left: 45px;
-    top: 8px;
-    width: 80px;
-    background-color: transparentize($color: #ffffff, $amount: 0);
-}
+// P {
+//     position: relative;
+//     left: 45px;
+//     top: 8px;
+//     width: 80px;
+//     background-color: transparentize($color: #ffffff, $amount: 0);
+// }
 
 .InpotCod {
     height: 60px;
-    color: rgba(179, 179, 179, 0.455);
+    // color: $JoinCodeColor;
+    padding-inline-start: 20px;
+    letter-spacing: 2px;
     width: 100%;
+    font-size: 18px;
     border-radius: 10px;
     border-left: 8px $BordersColor solid;
     border-right: 4px $BordersColor solid;
     border-bottom: 4px $BordersColor solid;
     border-top: 4px $BordersColor solid;
-    padding-left: 10px;
 
 
+    &::placeholder {
+        color: #CDCDCD
+    }
 
     box-shadow: -2px 2px 0px $ShadowColor;
 
