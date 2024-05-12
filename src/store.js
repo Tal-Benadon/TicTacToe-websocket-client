@@ -33,6 +33,8 @@ export const useBoardStore = create((set, get) => ({
         }
     },
     updateSymbol: (row, col, symbol) => {
+
+
         let gameBoard = get().gameBoard
 
         if (gameBoard[row] && gameBoard[row][col]) {
@@ -46,11 +48,25 @@ export const useBoardStore = create((set, get) => ({
         }
     },
     checkBoard: (row, col, symbol) => {
+
+
+
         let gameBoard = get().gameBoard
         let iterations = get().iterations
+
+        // function to check board - 
+
+        let checkup = get().checkBoardFunction(gameBoard, iterations, row, col, symbol)
+        if (checkup) {
+            set({ gameWinner: checkup.gameWinner, gameEnded: checkup.gameEnded, gameBoard: checkup.gameBoard })
+        }
+
+    },
+    checkBoardFunction: (gameBoard, iterations, row, col, symbol) => {
         let column = []
         let cross1 = []
         let cross2 = []
+        let gameRow = gameBoard[row]
         let j = 0
         let k = 0
         for (let i = 0; i < iterations; i++) {
@@ -64,32 +80,57 @@ export const useBoardStore = create((set, get) => ({
         for (let i = 0; i < iterations; i++) {
             column.push(gameBoard[i][col]);
         }
-        if (gameBoard[row].every(cell => cell.symbol === gameBoard[row][0].symbol && cell.symbol !== '')) {
-            set({ gameWinner: symbol })
-            set({ gameEnded: true })
-            set({ winningLine: gameBoard[row].map(value => value.location) })
-            return
+        if (gameRow.every(cell => cell.symbol === gameRow[0].symbol && cell.symbol !== '')) {
+
+            console.log({ gameRow });
+            return {
+
+                gameWinner: symbol, gameEnded: true, gameBoard: gameBoard.map(row =>
+                    row.map(cell =>
+                        !includesSubArray(gameRow.map(value => value.location), cell.location) ?
+                            { ...cell, isInactive: true }
+                            : cell
+                    )
+                )
+            }
         }
         if (column.every(cell => cell.symbol === column[0].symbol && cell.symbol !== '')) {
-            set({ gameWinner: symbol })
-            set({ gameEnded: true })
-            set({ winningLine: column.map(value => value.location) })
-            return
+            console.log({ column });
+            return {
+                gameWinner: symbol, gameEnded: true, gameBoard: gameBoard.map(row =>
+                    row.map(cell =>
+                        !includesSubArray(column.map(value => value.location), cell.location) ?
+                            { ...cell, isInactive: true }
+                            : cell
+                    )
+                )
+            }
         }
         if (cross1.every(cell => cell.symbol === cross1[0].symbol && cell.symbol !== '')) {
-            set({ gameWinner: symbol })
-            set({ gameEnded: true })
-            set({ winningLine: cross1.map(value => value.location) })
-            return
+            return {
+                gameWinner: symbol, gameEnded: true, gameBoard: gameBoard.map(row =>
+                    row.map(cell =>
+                        !includesSubArray(cross1.map(value => value.location), cell.location) ?
+                            { ...cell, isInactive: true }
+                            : cell
+                    )
+                )
+            }
         }
         if (cross2.every(cell => cell.symbol === cross2[0].symbol && cell.symbol !== '')) {
-            set({ gameWinner: symbol })
-            set({ gameEnded: true })
-            set({ winningLine: cross2.map(value => value.location) })
-            return
+            return {
+                gameWinner: symbol, gameEnded: true, gameBoard: gameBoard.map(row =>
+                    row.map(cell =>
+                        !includesSubArray(cross2.map(value => value.location), cell.location) ?
+                            { ...cell, isInactive: true }
+                            : cell
+                    )
+                )
+            }
+        } else {
+            return false
         }
     },
-
     triggerReanimation: (row, col) => {
         let gameBoard = get().gameBoard
         const newBoard = gameBoard.map((r, rIndex) =>
@@ -114,3 +155,15 @@ export const useTurnStore = create((set, get) => ({
 export const useSocketStore = create((set, get) => ({
     socket: io('http://localhost:3000')
 }))
+
+const includesSubArray = (mainArray, subArray) => {
+    return mainArray.some(element =>
+        Array.isArray(element) &&
+        element.length === subArray.length &&
+        element.every((value, index) => value === subArray[index])
+    );
+}
+
+//  gameBoard , iterations, row, col , symbol
+// false
+// {gameWinner : 'x' , bameBoard: [], gameEnded: true}

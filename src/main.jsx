@@ -13,6 +13,7 @@ import ButtonBack from './componnents/ButtonBack'
 import Waiting from './pages/Waiting'
 import GameBoardPageCopy from './pages/GameBoardPageCopy'
 import ChoosePlayerPageCopy from './pages/ChoosePlayerPageCopy'
+import PendingGamePage from './pages/PendingGamePage'
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,9 @@ const router = createBrowserRouter([
           },
           {
             path: 'Waiting', element: <Waiting />
+          },
+          {
+            path: 'PendingGame', element: <PendingGamePage />
           }
         ]
       },

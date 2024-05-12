@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styles from './styles.module.scss'
 import WhiteWrapperBox from '../../componnents/WhiteWrapperBox'
-import { useBoardStore, useTurnStore } from '../../store'
+import { useBoardStore, useSocketStore, useTurnStore } from '../../store'
 import Button from '../../componnents/Button'
 import SymbolButtonCopy from '../../componnents/SymbolButtonCopy'
 import { useNavigate } from 'react-router-dom'
@@ -11,13 +11,11 @@ export default function GameBoardPageCopy() {
     const createGameBoard = useBoardStore((state) => state.createBoard)
     const gameBoard = useBoardStore((state) => state.gameBoard)
     const gameEnded = useBoardStore((state) => state.gameEnded)
-    const winningLine = useBoardStore((state) => state.winningLine)
     const updateSymbol = useBoardStore((state) => state.updateSymbol)
     const checkBoard = useBoardStore((state) => state.checkBoard)
-    const updateEndGameBoard = useBoardStore((state) => state.updateEndGameBoard)
     const resetGame = useBoardStore((state) => state.resetGame)
     const resetGameWinner = useBoardStore((state) => state.resetGameWinner)
-    const iterations = useBoardStore((state) => state.iterations)
+    const socket = useSocketStore((state) => state.socket)
 
 
 
@@ -26,19 +24,11 @@ export default function GameBoardPageCopy() {
         createGameBoard()
     }, [])
 
+    // useEffect(() => {
 
 
-    useEffect(() => {
-        if (gameEnded) {
-            gameBoard.forEach(row => {
-                row.forEach(cell => {
-                    if (!includesSubArray(winningLine, cell.location)) {
-                        updateEndGameBoard(cell.location[0], cell.location[1])
-                    }
-                })
-            })
-        }
-    }, [gameEnded])
+    // }, [socket])
+
 
     const onPlayAgainClick = () => {
         setTurn(false)
@@ -47,13 +37,9 @@ export default function GameBoardPageCopy() {
         createGameBoard()
     }
 
-    const includesSubArray = (mainArray, subArray) => {
-        return mainArray.some(element =>
-            Array.isArray(element) &&
-            element.length === subArray.length &&
-            element.every((value, index) => value === subArray[index])
-        );
-    }
+
+
+
 
     const handleOnButtonClick = (location) => {
         if (gameEnded) {

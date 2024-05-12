@@ -5,11 +5,13 @@ import WhiteWarpperBox from '../../componnents/WhiteWrapperBox'
 import Loading from '../../componnents/Loading'
 import { useSocketStore } from '../../store';
 import { connect } from 'socket.io-client';
+import { useNavigate } from 'react-router-dom';
 
 export default function Waiting() {
     const socket = useSocketStore((state) => state.socket)
     const [gameCode, setGameCode] = useState('')//loading comp
 
+    const navigate = useNavigate()
 
     useEffect(() => {
         if (socket && socket.connected) {
@@ -28,6 +30,14 @@ export default function Waiting() {
 
         socket.on("gamejoin-alert", (data) => {
             console.log(data);
+        })
+
+        socket.on("join-data", (data) => {
+            console.log(data.success, data.members);
+            if (data.success) {
+                console.log("ROOM ID", data.roomId);
+                navigate('/ChoosePlayer')
+            }
         })
 
         return () => {

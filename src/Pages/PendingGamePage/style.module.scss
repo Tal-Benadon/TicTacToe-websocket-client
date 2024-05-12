@@ -1,0 +1,18 @@
+@import '../../vars';
+
+.pendingContainer {
+    flex: 1;
+    @extend .flex-c;
+    flex-direction: column;
+    gap: 2rem;
+
+    h2 {
+        font-size: 28px;
+    }
+}
+
+.titles {
+    @extend .flex-c;
+    flex-direction: column;
+    gap: 1rem
+}

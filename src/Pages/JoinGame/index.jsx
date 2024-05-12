@@ -16,6 +16,7 @@ export default function JoinGame() {
         socket.on("join-data", (data) => {
             if (data.success) {
                 console.log("you good", data.members);
+                navigate('/PendingGame')
             } else {
                 console.log("failed", data.alert);
             }

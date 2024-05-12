@@ -1,17 +1,22 @@
 import React, { useState } from 'react'
 import styles from './styles.module.scss'
-import SymbolButton from '../../componnents/SymbolButton'
 import WhiteWrapperBox from '../../componnents/WhiteWrapperBox'
 import Title from '../../componnents/Title'
 import Button from '../../componnents/Button'
 import SymbolButtonCopy from '../../componnents/SymbolButtonCopy'
+import { useLocation } from 'react-router-dom'
+import { useSocketStore } from '../../store'
 export default function ChoosePlayerPageCopy() {
+    const socket = useSocketStore((state) => state.socket)
+
+
     const [chosen, setChosen] = useState('')
 
     const onChoiceClickHandle = (symbol) => {
         setChosen(symbol)
-
+        socket.emit("symbol-choice", symbol)
     }
+
     const getClassName = (symbol) => {
         const isActive = chosen === symbol ? styles.active : ''
         return `${styles.symbol} ${isActive}`
@@ -62,3 +67,7 @@ export default function ChoosePlayerPageCopy() {
 
     )
 }
+
+
+
+
