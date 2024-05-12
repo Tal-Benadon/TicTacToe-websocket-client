@@ -17,12 +17,13 @@ export default function GameBoardPage() {
     const resetGameWinner = useBoardStore((state) => state.resetGameWinner)
     const socket = useSocketStore((state) => state.socket)
 
+    console.log(gameBoard);
 
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        createGameBoard()
-    }, [])
+    //     createGameBoard()
+    // }, [])
 
     // useEffect(() => {
 

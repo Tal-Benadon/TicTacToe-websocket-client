@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styles from './styles.module.scss'
-export default function SymbolButtonCopy(
+export default function SymbolButton(
     {
         symbol = '',
         onClick,

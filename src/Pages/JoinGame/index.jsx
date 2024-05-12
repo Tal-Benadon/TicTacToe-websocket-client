@@ -21,9 +21,13 @@ export default function JoinGame() {
                 console.log("failed", data.alert);
             }
         })
+        socket.on("incorrect-code", (data) => {
+            console.log(data.alert);
+        })
 
         return () => {
             socket.off("join-data")
+            socket.off("incorrect-code")
         }
     }, [socket, navigate])
 

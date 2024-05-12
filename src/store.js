@@ -15,7 +15,7 @@ export const useBoardStore = create((set, get) => ({
             set({ gameBoard: [...gameBoard] })
         }
     },
-    setGameBoard: (newBoard) => ({ gameBoard: newBoard }),
+    setGameBoard: (newBoard) => set({ gameBoard: newBoard }),
     createBoard: () => {
         let gameBoard = []
         for (let i = 0; i < get().iterations; i++) {
