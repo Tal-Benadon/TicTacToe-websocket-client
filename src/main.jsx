@@ -7,12 +7,10 @@ import Layout from './layout'
 import Welcome from './pages/Welcome'
 import Menu from './pages/Menu'
 import JoinGame from './pages/JoinGame'
-// import ChoosePlayerPage from './pages/ChoosePlayerPage'
-// import GameBoardPage from './pages/GameBoardPage'
 import ButtonBack from './componnents/ButtonBack'
 import Waiting from './pages/Waiting'
-import GameBoardPageCopy from './pages/GameBoardPageCopy'
-import ChoosePlayerPageCopy from './pages/ChoosePlayerPageCopy'
+import GameBoardPage from './pages/GameBoardPage'
+import ChoosePlayerPage from './pages/ChoosePlayerPage'
 import PendingGamePage from './pages/PendingGamePage'
 
 const router = createBrowserRouter([
@@ -30,7 +28,7 @@ const router = createBrowserRouter([
             path: 'JoinGame', element: <JoinGame />
           },
           {
-            path: 'ChoosePlayer', element: <ChoosePlayerPageCopy />
+            path: 'ChoosePlayer', element: <ChoosePlayerPage />
           },
           {
             path: 'Waiting', element: <Waiting />
@@ -41,7 +39,7 @@ const router = createBrowserRouter([
         ]
       },
       {
-        path: 'GameBoard', element: <GameBoardPageCopy />
+        path: 'GameBoard', element: <GameBoardPage />
       }
     ]
   },

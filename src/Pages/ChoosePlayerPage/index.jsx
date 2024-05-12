@@ -3,10 +3,10 @@ import styles from './styles.module.scss'
 import WhiteWrapperBox from '../../componnents/WhiteWrapperBox'
 import Title from '../../componnents/Title'
 import Button from '../../componnents/Button'
-import SymbolButtonCopy from '../../componnents/SymbolButtonCopy'
+import SymbolButton from '../../componnents/SymbolButton'
 import { useLocation } from 'react-router-dom'
 import { useSocketStore } from '../../store'
-export default function ChoosePlayerPageCopy() {
+export default function ChoosePlayerPage() {
     const socket = useSocketStore((state) => state.socket)
 
 
@@ -33,13 +33,13 @@ export default function ChoosePlayerPageCopy() {
                 <WhiteWrapperBox style={
                     { padding: '16px', display: 'flex', gap: '18px' }
                 }>
-                    <SymbolButtonCopy
+                    <SymbolButton
                         symbol={"O"}
                         onClick={() => onChoiceClickHandle("O")}
                         className={getClassName("O")}
                         isInactive={chosen && chosen !== "O"}
                     />
-                    <SymbolButtonCopy
+                    <SymbolButton
                         symbol={"X"}
                         onClick={() => onChoiceClickHandle("X")}
                         className={getClassName("X")}

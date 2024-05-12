@@ -3,10 +3,10 @@ import styles from './styles.module.scss'
 import WhiteWrapperBox from '../../componnents/WhiteWrapperBox'
 import { useBoardStore, useSocketStore, useTurnStore } from '../../store'
 import Button from '../../componnents/Button'
-import SymbolButtonCopy from '../../componnents/SymbolButtonCopy'
+import SymbolButton from '../../componnents/SymbolButton'
 import { useNavigate } from 'react-router-dom'
 import BoardHeader from '../../componnents/boardHeader'
-export default function GameBoardPageCopy() {
+export default function GameBoardPage() {
     const [turn, setTurn] = useState(false)
     const createGameBoard = useBoardStore((state) => state.createBoard)
     const gameBoard = useBoardStore((state) => state.gameBoard)
@@ -86,7 +86,7 @@ export default function GameBoardPageCopy() {
                                 {row.map((cell, columnIndex) => {
                                     let location = [rowIndex, columnIndex]
                                     return (
-                                        <SymbolButtonCopy key={columnIndex}
+                                        <SymbolButton key={columnIndex}
                                             symbol={cell.symbol}
                                             onClick={() => handleOnButtonClick(location)}
                                             isInactive={cell.isInactive}
