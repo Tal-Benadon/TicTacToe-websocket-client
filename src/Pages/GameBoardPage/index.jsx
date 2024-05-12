@@ -20,10 +20,10 @@ export default function GameBoardPage() {
     console.log(gameBoard);
 
 
-    // useEffect(() => {
+    useEffect(() => {
 
-    //     createGameBoard()
-    // }, [])
+
+    }, [])
 
     // useEffect(() => {
 
