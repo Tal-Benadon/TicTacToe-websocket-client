@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import styles from './styles.module.scss'
-import { useBoardStore, useTurnStore } from '../../store'
+import { useBoardStore, useTurnStore,useGameMode } from '../../store'
 export default function SymbolButton({ id, symbol = '', chosen, setChosen, isClicked, setIsClicked, isGameBoard, location, clicked, buttonValue }) {
+
     const [isInactived, setIsInactived] = useState(false)
     const [isActive, setIsActive] = useState(false)
     const [gameSymbol, setGameSymbol] = useState('')
@@ -10,6 +11,12 @@ export default function SymbolButton({ id, symbol = '', chosen, setChosen, isCli
     const turn = useTurnStore((state) => state.turn)
     const setTurn = useTurnStore((state) => state.setTurn)
     const updateSymbol = useBoardStore((state) => state.updateSymbol)
+    const checkBoard = useBoardStore((state) => state.checkBoard)
+
+    const solo = useGameMode((state)=>state.solo )
+    const withFriends = useGameMode((state)=>state.withFriends)
+    const [computerChosen, setComputerChosen] = useState()
+
     useEffect(() => {
         if (isClicked === true && chosen !== id) {
             setIsInactived(true)
@@ -22,22 +29,20 @@ export default function SymbolButton({ id, symbol = '', chosen, setChosen, isCli
         setChosen(id)
         setIsClicked(true)
         setIsActive(true)
-        
-
     }
-
 
     const handleGameClick = () => {
         if (!turn && !isGameClicked) {
             setGameSymbol('X')
             setIsGameClicked(true)
             updateSymbol(location[0], location[1], 'X')
-            
+            checkBoard(location[0], location[1])
             setTurn()
         } else if (turn && !isGameClicked) {
             setGameSymbol('O')
             setIsGameClicked(true)
             updateSymbol(location[0], location[1], 'O')
+            checkBoard(location[0], location[1])
             setTurn()
         }
     }
@@ -52,7 +57,6 @@ export default function SymbolButton({ id, symbol = '', chosen, setChosen, isCli
         }
 
     }
-
 
     const symbolX = <div className={`${styles.x} ${isActive ? styles.active : ''} ${isGameClicked ? styles.xActive : ''} `} >
         <svg viewBox="0 0 340 395" height={"100%"} width={"100%"} fill={isInactived ? "#9B9B9B" : "none"} xmlns="http://www.w3.org/2000/svg">

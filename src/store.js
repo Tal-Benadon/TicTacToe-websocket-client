@@ -10,8 +10,7 @@ export const useBoardStore = create((set, get) => ({
             for (let j = 0; j < get().iterations; j++) {
                 buttonRow.push({
                     symbol: '',
-                    location: [i, j]
-                });
+                })
             }
             gameBoard.push(buttonRow);
         }
@@ -24,14 +23,21 @@ export const useBoardStore = create((set, get) => ({
             set({ gameBoard: [...gameBoard] });
         }
     },
+
     checkBoard: (row, col) => {
         let gameBoard = get().gameBoard;
         console.log(gameBoard[row]);
-    }
-}));
+     
+    }}))
+    
+    export const useTurnStore = create((set, get) => ({
+        turn: false,
+        setTurn: () => set(state => ({ turn: !state.turn }))
+    }))
 
-
-export const useTurnStore = create((set, get) => ({
-    turn: false,
-    setTurn: () => set(state => ({ turn: !state.turn }))
-}))
+    export const useGameMode = create((set, get) => ({
+        solo: false,
+        setSolo: () => set(state => ({solo: !state.solo})),
+        withFriends:false,
+        setWithFriends: ()=> set(state => ({withFriends: !state.withFriends})),
+    }))

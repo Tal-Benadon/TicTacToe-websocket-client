@@ -23,7 +23,7 @@ export default function ChoosePlayerPage() {
                     </WhiteWrapperBox>
                 </div>
 
-                <Button Navigate={'/GameBoard'} text={'LETS PLAY'} style={
+                <Button Navigate={'/GamePage'} text={'LETS PLAY'} style={
                     {
                         height: '80px',
                         width: 'fit-content',
