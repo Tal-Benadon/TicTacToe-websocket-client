@@ -5,10 +5,12 @@ import Title from '../../componnents/Title'
 import Button from '../../componnents/Button'
 import SymbolButton from '../../componnents/SymbolButton'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { useBoardStore, useSocketStore } from '../../store'
+import { useBoardStore, useSocketStore, useTurnStore } from '../../store'
 export default function ChoosePlayerPage() {
     const socket = useSocketStore((state) => state.socket)
     const setGameBoard = useBoardStore((state) => state.setGameBoard)
+    const setUserTurn = useTurnStore((state) => state.setUserTurn)
+    const setMySymbol = useTurnStore((state) => state.setMySymbol)
     const navigate = useNavigate()
 
     const [chosen, setChosen] = useState('')
@@ -19,7 +21,10 @@ export default function ChoosePlayerPage() {
         socket.on("create-board", (data) => {
             const newGameBoard = data.gameBoard
             console.log(newGameBoard);
+            let initialTurn = data.initialTurn
+            setUserTurn(initialTurn)
             setGameBoard(newGameBoard)
+            navigate('/GameBoard')
         })
     }, [socket])
 
@@ -36,10 +41,7 @@ export default function ChoosePlayerPage() {
     const handleLetsPlayClick = (chosen) => {
         console.log(chosen);
         socket.emit("sides-chosen", { complete: true, chosenSymbol: chosen })
-
-        navigate('/GameBoard')
-
-
+        setMySymbol(chosen)
     }
 
 

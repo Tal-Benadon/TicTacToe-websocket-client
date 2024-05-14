@@ -3,8 +3,10 @@ import io from 'socket.io-client'
 export const useBoardStore = create((set, get) => ({
     iterations: 3,
     gameWinner: '',
+    setGameWinner: (result) => set({ gameWinner: result }),
     resetGameWinner: () => ({ gameWinner: '' }),
     gameEnded: false,
+    setGameEnded: (result) => set({ gameEnded: result }),
     resetGame: () => set({ gameEnded: false }),
     gameBoard: [],
     winningLine: [],
@@ -25,6 +27,7 @@ export const useBoardStore = create((set, get) => ({
                     symbol: '',
                     animationTrigger: 0,
                     isInactive: false,
+                    isPlayed: false,
                     location: [i, j]
                 })
             }
@@ -36,17 +39,26 @@ export const useBoardStore = create((set, get) => ({
 
 
         let gameBoard = get().gameBoard
-
         if (gameBoard[row] && gameBoard[row][col]) {
-            if (gameBoard[row][col].isPlayed === true) {
-                get().triggerReanimation(row, col)
-                return
+            let newBoard = get().updateSymbolFunction(row, col, symbol, gameBoard)
+            if (newBoard) {
+                set({ gameBoard: newBoard })
+            } else {
+                return false
             }
-            gameBoard[row][col].symbol = symbol
-            gameBoard[row][col].isPlayed = true
-            set({ gameBoard: [...gameBoard] })
         }
     },
+
+    updateSymbolFunction: (row, col, symbol, gameBoard) => {
+        if (gameBoard[row][col].isPlayed = false) {
+            gameBoard[row][col].symbol = symbol
+            gameBoard[row][col].isPlayed = true
+            return [...gameBoard]
+        } else {
+            return false
+        }
+    },
+
     checkBoard: (row, col, symbol) => {
 
 
@@ -148,13 +160,17 @@ export const useBoardStore = create((set, get) => ({
 
 
 export const useTurnStore = create((set, get) => ({
-    turn: false,
-    setTurn: () => set(state => ({ turn: !state.turn }))
+    userTurn: null,
+    mySymbol: '',
+    setMySymbol: (newSymbol) => set({ mySymbol: newSymbol }),
+    setUserTurn: (newUser) => set({ userTurn: newUser })
 }))
 
 export const useSocketStore = create((set, get) => ({
-    socket: io('http://localhost:3000')
+    socket: io('https://0422jj7m-3000.euw.devtunnels.ms/')
 }))
+//http://localhost:3000
+//https://0422jj7m-3000.euw.devtunnels.ms/
 
 const includesSubArray = (mainArray, subArray) => {
     return mainArray.some(element =>

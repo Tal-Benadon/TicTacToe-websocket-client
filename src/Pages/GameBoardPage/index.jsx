@@ -7,23 +7,48 @@ import SymbolButton from '../../componnents/SymbolButton'
 import { useNavigate } from 'react-router-dom'
 import BoardHeader from '../../componnents/boardHeader'
 export default function GameBoardPage() {
-    const [turn, setTurn] = useState(false)
+    // const [turn, setTurn] = useState(false)c
+    const mySymbol = useTurnStore((state) => state.mySymbol)
+    const userTurn = useTurnStore((state) => state.userTurn)
+    const setUserTurn = useTurnStore((state) => state.setUserTurn)
     const createGameBoard = useBoardStore((state) => state.createBoard)
     const gameBoard = useBoardStore((state) => state.gameBoard)
     const gameEnded = useBoardStore((state) => state.gameEnded)
+    const setGameEnded = useBoardStore((state) => state.setGameEnded)
     const updateSymbol = useBoardStore((state) => state.updateSymbol)
     const checkBoard = useBoardStore((state) => state.checkBoard)
     const resetGame = useBoardStore((state) => state.resetGame)
+    const setGameWinner = useBoardStore((state) => state.setGameWinner)
     const resetGameWinner = useBoardStore((state) => state.resetGameWinner)
+    const setGameBoard = useBoardStore((state) => state.setGameBoard)
     const socket = useSocketStore((state) => state.socket)
 
     console.log(gameBoard);
 
 
     useEffect(() => {
+        socket.on("game-move", (data) => {
+            let newGameBoard = data.gameBoard
+            let newTurn = data.newTurn
+            setGameBoard(newGameBoard)
+            setUserTurn(newTurn)
+        })
 
+        socket.on("game-end", (data) => {
+            setGameEnded(data.gameEnded)
+            setGameWinner(data.gameWinner)
+            if (data.gameBoard) {
+                setGameBoard(data.gameBoard)
+            }
+        })
 
-    }, [])
+        socket.on("illegal-move", (data) => {
+            if (data.illegal) {
+                console.log(data.alert);
+            }
+        })
+
+    }, [socket])
 
     // useEffect(() => {
 
@@ -32,7 +57,7 @@ export default function GameBoardPage() {
 
 
     const onPlayAgainClick = () => {
-        setTurn(false)
+        // setTurn(false)
         resetGame()
         resetGameWinner()
         createGameBoard()
@@ -46,18 +71,21 @@ export default function GameBoardPage() {
         if (gameEnded) {
             return
         }
-        if (!turn) {
-            updateSymbol(location[0], location[1], 'X') // adds "isPlayed:true"
-            checkBoard(location[0], location[1], 'X')
+        if (userTurn === socket.id) {
+            let update = updateSymbol(location[0], location[1], mySymbol) // adds "isPlayed:true"
+            console.log(update);
+            socket.emit("game-move", { location, mySymbol })
+            // checkBoard(location[0], location[1], 'X')
 
-            setTurn(!turn)
-        } else if (turn) {
+            // setTurn(!turn)
+        } else {
+            return
+        } //if 
+        // () {
 
-            updateSymbol(location[0], location[1], 'O')// adds "isPlayed:true"
-            checkBoard(location[0], location[1], 'O')
-            setTurn(!turn)
-        }
-
+        // updateSymbol(location[0], location[1], 'O')// adds "isPlayed:true"
+        // checkBoard(location[0], location[1], 'O')
+        // setTurn(!turn)
     }
 
     const getClassName = (symbol) => {

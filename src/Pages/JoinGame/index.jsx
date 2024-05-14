@@ -12,6 +12,7 @@ export default function JoinGame() {
     const [gameCode, setGameCode] = useState('')
 
 
+
     useEffect(() => {
         socket.on("join-data", (data) => {
             if (data.success) {
