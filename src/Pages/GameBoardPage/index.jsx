@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom'
 import BoardHeader from '../../componnents/boardHeader'
 export default function GameBoardPage() {
     // const [turn, setTurn] = useState(false)c
+    const [isWaiting, setIsWaiting] = useState(false)
     const mySymbol = useTurnStore((state) => state.mySymbol)
     const userTurn = useTurnStore((state) => state.userTurn)
     const setUserTurn = useTurnStore((state) => state.setUserTurn)
@@ -21,6 +22,7 @@ export default function GameBoardPage() {
     const setGameWinner = useBoardStore((state) => state.setGameWinner)
     const resetGameWinner = useBoardStore((state) => state.resetGameWinner)
     const setGameBoard = useBoardStore((state) => state.setGameBoard)
+
     const socket = useSocketStore((state) => state.socket)
 
     console.log(gameBoard);
@@ -48,6 +50,19 @@ export default function GameBoardPage() {
             }
         })
 
+        socket.on("waiting-replay", (data) => {
+            console.log(data.alert);
+
+        })
+
+        socket.on("playing-again", (data) => {
+            console.log("hi", data.gameBoard);
+            setGameBoard(data.gameBoard)
+            setGameEnded(data.gameEnded)
+            setIsWaiting(false)
+            setUserTurn(data.currentTurn)
+        })
+
     }, [socket])
 
     // useEffect(() => {
@@ -58,9 +73,8 @@ export default function GameBoardPage() {
 
     const onPlayAgainClick = () => {
         // setTurn(false)
-        resetGame()
-        resetGameWinner()
-        createGameBoard()
+        socket.emit("play-again")
+        setIsWaiting(true)
     }
 
 
@@ -130,12 +144,23 @@ export default function GameBoardPage() {
             </div>
             {
                 gameEnded ?
+
+
+
                     <div className={styles.endBtns}>
-                        <Button text={'PLAY AGAIN'} onClick={onPlayAgainClick} style={{
-                            height: '60px',
-                            width: '250px',
-                            fontSize: '28px',
-                        }} />
+                        {!isWaiting ?
+                            <Button text={'PLAY AGAIN'} onClick={onPlayAgainClick} style={{
+                                height: '60px',
+                                width: '250px',
+                                fontSize: '28px',
+                            }} />
+
+                            :
+                            <Button text={'Waiting...'} style={{
+                                height: '60px',
+                                width: '250px',
+                                fontSize: '28px',
+                            }} />}
                         <Button text={'BACK TO MAIN'} style={{
                             height: '60px',
                             width: '250px',

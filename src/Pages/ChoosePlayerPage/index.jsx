@@ -8,9 +8,11 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { useBoardStore, useSocketStore, useTurnStore } from '../../store'
 export default function ChoosePlayerPage() {
     const socket = useSocketStore((state) => state.socket)
-    const setGameBoard = useBoardStore((state) => state.setGameBoard)
+    // const setGameBoard = useBoardStore((state) => state.setGameBoard)
+    const { setGameBoard, gameBoard } = useBoardStore()
     const setUserTurn = useTurnStore((state) => state.setUserTurn)
     const setMySymbol = useTurnStore((state) => state.setMySymbol)
+    const [isWaiting, setIsWaiting] = useState(false)
     const navigate = useNavigate()
 
     const [chosen, setChosen] = useState('')
@@ -24,7 +26,14 @@ export default function ChoosePlayerPage() {
             let initialTurn = data.initialTurn
             setUserTurn(initialTurn)
             setGameBoard(newGameBoard)
-            navigate('/GameBoard')
+
+        })
+        socket.on('player2IsReady', (data) => {
+            console.log("Hi, player2 said he's ready");
+            console.log(data.success);
+            if (gameBoard.length) {
+                navigate('/GameBoard')
+            }
         })
     }, [socket])
 
@@ -42,6 +51,7 @@ export default function ChoosePlayerPage() {
         console.log(chosen);
         socket.emit("sides-chosen", { complete: true, chosenSymbol: chosen })
         setMySymbol(chosen)
+        setIsWaiting(!isWaiting)
     }
 
 
@@ -49,17 +59,22 @@ export default function ChoosePlayerPage() {
         <div className={styles.choosePlayerContainer}>
 
             <div className={styles.pageTitle}>
-                <Title title={'CHOOSE SIDE'} />
+                <Title title={isWaiting ? 'Waiting for P2' : 'CHOOSE SIDE'} />
             </div>
 
             <div className={styles.content}>
                 <WhiteWrapperBox style={
-                    { padding: '16px', display: 'flex', gap: '18px' }
+                    {
+                        padding: '16px',
+                        display: 'flex',
+                        gap: '18px',
+                        pointerEvents: isWaiting ? 'none' : 'auto'
+                    }
                 }>
                     <SymbolButton
                         symbol={"O"}
                         onClick={() => onChoiceClickHandle("O")}
-                        className={getClassName("O")}
+                        className={`${getClassName("O")} ${isWaiting ? styles.waiting : ""}`} //class name that can also identify if the button is chosen and create an animation. if choice is complete, waiting prevents pointer events.
                         isInactive={chosen && chosen !== "O"}
                     />
                     <SymbolButton
@@ -81,7 +96,7 @@ export default function ChoosePlayerPage() {
                     fontSize: '28px',
                     padding: '0 2rem 0 2rem',
                     opacity: !chosen ? 0 : 1,
-                    pointerEvents: !chosen ? 'none' : ''
+                    pointerEvents: isWaiting ? 'none' : 'auto'
                 }
 
             } />

@@ -6,22 +6,18 @@ import { useNavigate } from 'react-router-dom'
 import X from '../../componnents/X'
 import O from '../../componnents/O'
 import Title from '../../componnents/Title'
+import Button from '../../componnents/Button'
 export default function PendingGamePage() {
     const socket = useSocketStore((state) => state.socket)
-    const setMySymbol = useTurnStore((state) => state.setMySymbol)
-    const mySymbol = useTurnStore((state) => state.mySymbol)
+    const { mySymbol, setMySymbol, setUserTurn } = useTurnStore()
+    const [isPressed, setIsPressed] = useState(false)
     const setGameBoard = useBoardStore((state) => state.setGameBoard)
-    const setUserTurn = useTurnStore((state) => state.setUserTurn)
-    // const [chosenSymbol, setChosenSymbol] = useState('')
 
     const navigate = useNavigate()
     useEffect(() => {
         socket.on("sides-chosen", (data) => {
             if (data.complete) {
 
-                setTimeout(() => {
-                    navigate('/GameBoard')
-                }, 2500);
                 setMySymbol(data.opponentSymbol)
             }
         })
@@ -33,6 +29,12 @@ export default function PendingGamePage() {
             setGameBoard(newGameBoard)
         })
     }, [socket])
+
+    const handleReadyClick = () => {
+        setIsPressed(!isPressed)
+        socket.emit('player2Ready')
+
+    }
 
     return (
         mySymbol ?
@@ -47,7 +49,14 @@ export default function PendingGamePage() {
                     <div className={styles.chosenSymbol}>
                         <O />
                     </div>
-                }</div>
+                }
+                <Button text={`${isPressed ? "Loading..." : "I'M READY!"}`} onClick={handleReadyClick}
+                    style={{
+                        width: 'fit-content',
+                        padding: '0 2rem',
+                        pointerEvents: isPressed ? 'none' : 'auto'
+                    }} />
+            </div>
             :
             <div className={styles.pendingContainer}>
                 <Loading />

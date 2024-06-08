@@ -12,22 +12,28 @@
 
 }
 
-.userImg1 {
+
+.imagesContainer {
     position: absolute;
+    bottom: 20px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+}
+
+.userImg1 {
     width: 100px;
     height: 100px;
     border-radius: 50px;
-    border: black 1px solid;
-    margin-top: 20px;
 }
 
 .userImg2 {
-    position: absolute;
+
     width: 100px;
     height: 100px;
     border-radius: 50px;
-    border: black 1px solid;
-    margin-top: 20px;
 }
 
 // img {

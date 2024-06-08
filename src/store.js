@@ -167,7 +167,7 @@ export const useTurnStore = create((set, get) => ({
 }))
 
 export const useSocketStore = create((set, get) => ({
-    socket: io('https://0422jj7m-3000.euw.devtunnels.ms/')
+    socket: io('http://localhost:3000/')
 }))
 //http://localhost:3000
 //https://0422jj7m-3000.euw.devtunnels.ms/
@@ -183,3 +183,5 @@ const includesSubArray = (mainArray, subArray) => {
 //  gameBoard , iterations, row, col , symbol
 // false
 // {gameWinner : 'x' , bameBoard: [], gameEnded: true}
+
+export const useUserStore = create((set, get) => ({}))
