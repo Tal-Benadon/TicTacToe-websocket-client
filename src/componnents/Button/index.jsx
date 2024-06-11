@@ -4,12 +4,12 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-export default function Button({ text = "PLAY SOLO", style = {}, onClick, type = 'button' }) {
+export default function Button({ text = "", style = {}, onClick, type = 'button', disabled }) {
 
 
   return (
     <>
-      <button type={type} className={styles.Button} style={{ ...style }} onClick={onClick}>
+      <button type={type} className={styles.Button} style={{ ...style }} onClick={onClick} disabled={disabled}>
         {text}
       </button>
     </>

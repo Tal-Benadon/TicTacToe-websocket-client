@@ -12,6 +12,7 @@ import Waiting from './pages/Waiting'
 import GameBoardPage from './pages/GameBoardPage'
 import ChoosePlayerPage from './pages/ChoosePlayerPage'
 import PendingGamePage from './pages/PendingGamePage'
+import SettingsPage from './pages/SettingsPage'
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,9 @@ const router = createBrowserRouter([
       },
       {
         element: <ButtonBack />, children: [
+          {
+            path: 'settings', element: < SettingsPage />
+          },
           {
             path: 'JoinGame', element: <JoinGame />
           },

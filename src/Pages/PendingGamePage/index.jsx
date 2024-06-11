@@ -27,13 +27,13 @@ export default function PendingGamePage() {
             setUserTurn(initialTurn)
             console.log(newGameBoard);
             setGameBoard(newGameBoard)
+            navigate('/GameBoard')
         })
     }, [socket])
 
     const handleReadyClick = () => {
         setIsPressed(!isPressed)
-        socket.emit('player2Ready')
-
+        socket.emit('player2Ready', { success: true })
     }
 
     return (

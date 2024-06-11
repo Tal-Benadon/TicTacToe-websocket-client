@@ -26,14 +26,15 @@ export default function ChoosePlayerPage() {
             let initialTurn = data.initialTurn
             setUserTurn(initialTurn)
             setGameBoard(newGameBoard)
-
+            navigate('/GameBoard')
         })
         socket.on('player2IsReady', (data) => {
             console.log("Hi, player2 said he's ready");
             console.log(data.success);
-            if (gameBoard.length) {
-                navigate('/GameBoard')
+            if (data.success) {
+                socket.emit("both-ready", { status: true })
             }
+
         })
     }, [socket])
 

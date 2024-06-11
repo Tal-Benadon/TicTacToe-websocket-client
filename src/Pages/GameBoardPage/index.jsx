@@ -9,20 +9,12 @@ import BoardHeader from '../../componnents/boardHeader'
 export default function GameBoardPage() {
     // const [turn, setTurn] = useState(false)c
     const [isWaiting, setIsWaiting] = useState(false)
-    const mySymbol = useTurnStore((state) => state.mySymbol)
-    const userTurn = useTurnStore((state) => state.userTurn)
-    const setUserTurn = useTurnStore((state) => state.setUserTurn)
+    const { userTurn, setUserTurn, mySymbol } = useTurnStore()
     const createGameBoard = useBoardStore((state) => state.createBoard)
-    const gameBoard = useBoardStore((state) => state.gameBoard)
-    const gameEnded = useBoardStore((state) => state.gameEnded)
-    const setGameEnded = useBoardStore((state) => state.setGameEnded)
-    const updateSymbol = useBoardStore((state) => state.updateSymbol)
+    const { gameBoard, gameEnded, setGameEnded, updateSymbol, setGameWinner, setGameBoard } = useBoardStore()
     const checkBoard = useBoardStore((state) => state.checkBoard)
     const resetGame = useBoardStore((state) => state.resetGame)
-    const setGameWinner = useBoardStore((state) => state.setGameWinner)
     const resetGameWinner = useBoardStore((state) => state.resetGameWinner)
-    const setGameBoard = useBoardStore((state) => state.setGameBoard)
-
     const socket = useSocketStore((state) => state.socket)
 
     console.log(gameBoard);
@@ -75,6 +67,10 @@ export default function GameBoardPage() {
         // setTurn(false)
         socket.emit("play-again")
         setIsWaiting(true)
+    }
+
+    const onBackClick = () => {
+        navigate
     }
 
 
