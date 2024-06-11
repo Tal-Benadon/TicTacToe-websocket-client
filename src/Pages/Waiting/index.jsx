@@ -14,12 +14,16 @@ export default function Waiting() {
     const navigate = useNavigate()
 
     useEffect(() => {
+
+        const userName = localStorage.getItem('ticTacToeUserName')
+
+
         if (socket && socket.connected) {
-            socket.emit('create-game', { userId: socket.id })
+            socket.emit('create-game', { userId: socket.id, userName })
 
         } else {
             socket.on(connect, () => {
-                socket.emit('create-game', { userId: socket.id })
+                socket.emit('create-game', { userId: socket.id, userName })
             })
         }
 

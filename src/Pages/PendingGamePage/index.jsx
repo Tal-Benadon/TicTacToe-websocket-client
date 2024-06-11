@@ -9,7 +9,7 @@ import Title from '../../componnents/Title'
 import Button from '../../componnents/Button'
 export default function PendingGamePage() {
     const socket = useSocketStore((state) => state.socket)
-    const { mySymbol, setMySymbol, setUserTurn } = useTurnStore()
+    const { mySymbol, setMySymbol, setUserTurn, setUserInfo, setOpponentInfo } = useTurnStore()
     const [isPressed, setIsPressed] = useState(false)
     const setGameBoard = useBoardStore((state) => state.setGameBoard)
 
@@ -27,6 +27,10 @@ export default function PendingGamePage() {
             setUserTurn(initialTurn)
             console.log(newGameBoard);
             setGameBoard(newGameBoard)
+            let thisUser = data.roomUsers.find(user => user.userId === socket.id)
+            let opponentUser = data.roomUsers.find(user => user.userId !== socket.id)
+            setUserInfo(thisUser)
+            setOpponentInfo(opponentUser)
             navigate('/GameBoard')
         })
     }, [socket])

@@ -9,7 +9,7 @@ import BoardHeader from '../../componnents/boardHeader'
 export default function GameBoardPage() {
     // const [turn, setTurn] = useState(false)c
     const [isWaiting, setIsWaiting] = useState(false)
-    const { userTurn, setUserTurn, mySymbol } = useTurnStore()
+    const { userTurn, setUserTurn, mySymbol, setUserInfo, setOpponentInfo } = useTurnStore()
     const createGameBoard = useBoardStore((state) => state.createBoard)
     const { gameBoard, gameEnded, setGameEnded, updateSymbol, setGameWinner, setGameBoard } = useBoardStore()
     const checkBoard = useBoardStore((state) => state.checkBoard)
@@ -31,6 +31,11 @@ export default function GameBoardPage() {
         socket.on("game-end", (data) => {
             setGameEnded(data.gameEnded)
             setGameWinner(data.gameWinner)
+            let thisUser = data.roomUsers.find(user => user.userId === socket.id)
+            let opponentUser = data.roomUsers.find(user => user.userId !== socket.id)
+            setOpponentInfo(opponentUser)
+            setUserInfo(thisUser)
+            console.log(data);
             if (data.gameBoard) {
                 setGameBoard(data.gameBoard)
             }
@@ -57,10 +62,6 @@ export default function GameBoardPage() {
 
     }, [socket])
 
-    // useEffect(() => {
-
-
-    // }, [socket])
 
 
     const onPlayAgainClick = () => {
@@ -85,17 +86,10 @@ export default function GameBoardPage() {
             let update = updateSymbol(location[0], location[1], mySymbol) // adds "isPlayed:true"
             console.log(update);
             socket.emit("game-move", { location, mySymbol })
-            // checkBoard(location[0], location[1], 'X')
-
-            // setTurn(!turn)
         } else {
             return
-        } //if 
-        // () {
+        }
 
-        // updateSymbol(location[0], location[1], 'O')// adds "isPlayed:true"
-        // checkBoard(location[0], location[1], 'O')
-        // setTurn(!turn)
     }
 
     const getClassName = (symbol) => {

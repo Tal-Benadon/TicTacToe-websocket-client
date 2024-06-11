@@ -13,6 +13,7 @@ export default function JoinGame() {
 
 
 
+
     useEffect(() => {
         socket.on("join-data", (data) => {
             if (data.success) {
@@ -35,11 +36,13 @@ export default function JoinGame() {
 
     const onJoinClick = (e) => {
         e.preventDefault()
+        const userName = localStorage.getItem('ticTacToeUserName')
         console.log(gameCode);
-        socket.emit("join-game", { userId: socket.id, gameCode: gameCode })
+        socket.emit("join-game", { userId: socket.id, gameCode: gameCode, userName })
     }
 
     const onCreateClick = () => {
+
         navigate('/Waiting')
     }
 

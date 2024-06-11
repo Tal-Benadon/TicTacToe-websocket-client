@@ -2,7 +2,7 @@ import { create } from 'zustand'
 import io from 'socket.io-client'
 export const useBoardStore = create((set, get) => ({
     iterations: 3,
-    gameWinner: '',
+    gameWinner: {},
     setGameWinner: (result) => set({ gameWinner: result }),
     resetGameWinner: () => ({ gameWinner: '' }),
     gameEnded: false,
@@ -161,9 +161,13 @@ export const useBoardStore = create((set, get) => ({
 
 export const useTurnStore = create((set, get) => ({
     userTurn: null,
+    userInfo: null,
+    opponentInfo: null,
     mySymbol: '',
+    setUserInfo: (info) => set({ userInfo: info }),
     setMySymbol: (newSymbol) => set({ mySymbol: newSymbol }),
-    setUserTurn: (newUser) => set({ userTurn: newUser })
+    setUserTurn: (newUser) => set({ userTurn: newUser }),
+    setOpponentInfo: (opponentInfo) => set({ opponentInfo })
 }))
 
 export const useSocketStore = create((set, get) => ({

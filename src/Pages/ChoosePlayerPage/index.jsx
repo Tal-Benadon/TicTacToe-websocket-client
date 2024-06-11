@@ -10,8 +10,7 @@ export default function ChoosePlayerPage() {
     const socket = useSocketStore((state) => state.socket)
     // const setGameBoard = useBoardStore((state) => state.setGameBoard)
     const { setGameBoard, gameBoard } = useBoardStore()
-    const setUserTurn = useTurnStore((state) => state.setUserTurn)
-    const setMySymbol = useTurnStore((state) => state.setMySymbol)
+    const { setUserInfo, setUserTurn, setMySymbol, setOpponentInfo } = useTurnStore()
     const [isWaiting, setIsWaiting] = useState(false)
     const navigate = useNavigate()
 
@@ -26,6 +25,10 @@ export default function ChoosePlayerPage() {
             let initialTurn = data.initialTurn
             setUserTurn(initialTurn)
             setGameBoard(newGameBoard)
+            let thisUser = data.roomUsers.find(user => user.userId === socket.id)
+            let opponentUser = data.roomUsers.find(user => user.userId !== socket.id)
+            setOpponentInfo(opponentUser)
+            setUserInfo(thisUser)
             navigate('/GameBoard')
         })
         socket.on('player2IsReady', (data) => {
