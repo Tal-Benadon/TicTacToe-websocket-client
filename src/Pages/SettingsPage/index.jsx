@@ -4,6 +4,7 @@ import WhiteWrapperBox from '../../componnents/WhiteWrapperBox'
 import InputCode from '../../componnents/inputCode'
 import Button from '../../componnents/Button'
 import Title from '../../componnents/Title'
+import CharRoulette from '../../componnents/CharRoulette'
 export default function SettingsPage() {
 
     const [userName, setUserName] = useState('')
@@ -55,10 +56,11 @@ export default function SettingsPage() {
     return (
         <main className={styles.main}>
             <div className={styles.imgEncompass}>
-                <img src="620af74ff1676949d91804882a8c5bab.png" alt="" />
+                <img className={styles.appImg} src="620af74ff1676949d91804882a8c5bab.png" alt="" />
             </div>
             <form className={styles.form} onSubmit={handleSubmit}>
                 <InputCode title={"YOUR NAME"} value={userName} classname={styles.settingsInput} onChange={handleOnChange} />
+                <CharRoulette />
                 <div className={styles.buttonEncompass}>
                     <Button text={"CONFIRM"} type='submit' style={{
                         width: 'fit-content',

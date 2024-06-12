@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import styles from './style.module.scss'
 import defaultImg1 from '../../../public/default_man.png'
 import defaultImg2 from '../../../public/default_woman.png'
+
 import { useBoardStore, useTurnStore } from '../../store'
 import X from '../X'
 import O from '../O'
