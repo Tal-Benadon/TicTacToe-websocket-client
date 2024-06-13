@@ -8,7 +8,7 @@
     // align-items: center;
     padding: 0 1rem;
     flex: 1;
-    position: relative;
+
 
     .appImg {
         position: fixed;
@@ -33,11 +33,11 @@
     flex-direction: column;
     justify-content: center;
     // align-items: center;
+    position: relative;
 }
 
 
 .buttonEncompass {
-    padding-top: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -45,7 +45,7 @@
 
 .tempMsg {
     position: absolute;
-    top: calc(50% + 6rem);
+    bottom: 5%;
     left: 50%;
     transform: translate(-50%);
     font-size: 2rem;

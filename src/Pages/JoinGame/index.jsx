@@ -37,8 +37,9 @@ export default function JoinGame() {
     const onJoinClick = (e) => {
         e.preventDefault()
         const userName = localStorage.getItem('ticTacToeUserName')
+        const imageIndex = parseInt(localStorage.getItem('ticTacToeImgIndex'), 10)
         console.log(gameCode);
-        socket.emit("join-game", { userId: socket.id, gameCode: gameCode, userName })
+        socket.emit("join-game", { userId: socket.id, gameCode: gameCode, userName, imageIndex })
     }
 
     const onCreateClick = () => {

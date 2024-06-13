@@ -21,11 +21,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 3rem;
+    gap: 5rem;
 }
 
 .userImg1 {
-    border-radius: 50px;
+    border-radius: 50%;
     width: 100%;
     object-fit: cover
 }
@@ -33,7 +33,7 @@
 .userImg2 {
     object-fit: cover;
     width: 100%;
-    border-radius: 50px;
+    border-radius: 50%;
 }
 
 .userInfo {
@@ -53,6 +53,8 @@
 .wins {
     position: relative;
     position: absolute;
+    display: flex;
+    gap: 4px;
     font-family: "Kavoon", serif;
     bottom: -6px;
     font-size: 12px;
@@ -72,4 +74,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.winNum {
+    color: $WinsTextColor;
 }

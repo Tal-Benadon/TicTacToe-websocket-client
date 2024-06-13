@@ -1,37 +1,49 @@
 import React, { useEffect, useState } from 'react'
 import styles from './style.module.scss'
-import WhiteWrapperBox from '../../componnents/WhiteWrapperBox'
 import InputCode from '../../componnents/inputCode'
 import Button from '../../componnents/Button'
-import Title from '../../componnents/Title'
-import CharRoulette from '../../componnents/CharRoulette'
+import CharRouletteV2 from '../../componnents/CharRouletteV2'
+import { images } from '../../data/imageList'
 export default function SettingsPage() {
 
+    const [imageIndex, setImageIndex] = useState(0)
     const [userName, setUserName] = useState('')
     const [isAlertShow, setIsAlertShow] = useState(false)
     const [alertMsg, setAlertMsg] = useState('')
 
-    const nameAlert = { invalid: "INVALID NAME", valid: "NAME SAVED!", sameName: "NAME ALREADY SAVED" }
+    const nameAlert = { invalid: "INVALID NAME", valid: "INFO SAVED!", sameInfo: "INFO ALREADY SAVED", tooLong: "NAME TOO LONG" }
 
     //The useEffect checks if there's a username saved and puts it in the input field
     useEffect(() => {
         const localUserName = localStorage.getItem('ticTacToeUserName')
+        const chosenImageIndex = localStorage.getItem('ticTacToeImgIndex')
         if (localUserName) {
             setUserName(localUserName)
+        }
+        if (chosenImageIndex) {
+            setImageIndex(parseInt(chosenImageIndex, 10))
         }
     }, [window.location])
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        if (localStorage.getItem('ticTacToeUserName') === userName) {
-            setAlertMsg(nameAlert.sameName)
+        if (localStorage.getItem('ticTacToeUserName') === userName &&
+            localStorage.getItem('ticTacToeImgIndex') === imageIndex) {
+            setAlertMsg(nameAlert.sameInfo)
             showTempMsg()
             return
         }
 
+
         if (userName) {
+            if (userName.length > 10) {
+                setAlertMsg(nameAlert.tooLong)
+                showTempMsg()
+                return
+            }
             setAlertMsg(nameAlert.valid)
             localStorage.ticTacToeUserName = userName
+            localStorage.ticTacToeImgIndex = imageIndex % images.length
             showTempMsg()
             return
         } else {
@@ -60,7 +72,8 @@ export default function SettingsPage() {
             </div>
             <form className={styles.form} onSubmit={handleSubmit}>
                 <InputCode title={"YOUR NAME"} value={userName} classname={styles.settingsInput} onChange={handleOnChange} />
-                <CharRoulette />
+                {/* <CharRoulette images={images} /> */}
+                <CharRouletteV2 images={images} imageIndex={imageIndex} setImageIndex={setImageIndex} />
                 <div className={styles.buttonEncompass}>
                     <Button text={"CONFIRM"} type='submit' style={{
                         width: 'fit-content',

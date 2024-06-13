@@ -8,14 +8,13 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { useBoardStore, useSocketStore, useTurnStore } from '../../store'
 export default function ChoosePlayerPage() {
     const socket = useSocketStore((state) => state.socket)
-    // const setGameBoard = useBoardStore((state) => state.setGameBoard)
+
     const { setGameBoard, gameBoard } = useBoardStore()
     const { setUserInfo, setUserTurn, setMySymbol, setOpponentInfo } = useTurnStore()
     const [isWaiting, setIsWaiting] = useState(false)
     const navigate = useNavigate()
-
     const [chosen, setChosen] = useState('')
-    const [showSymbol, setShowSymbol] = useState('')
+
 
 
     useEffect(() => {

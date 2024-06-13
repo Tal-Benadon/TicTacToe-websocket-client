@@ -1,20 +1,9 @@
 import React, { useState } from 'react'
 import styles from './style.module.scss'
-export default function CharRoulette() {
-    const [currentIndex, setCurrentIndex] = useState(0)
+export default function CharRoulette({ images, chosenIndex }) {
 
-    const images = ["person_01.png",
-        "person_02.png",
-        "person_03.png",
-        "person_04.png",
-        "person_05.png",
-        "person_06.png",
-        "person_07.png",
-        "person_08.png",
-        "person_09.png",
-        "default_man.png",
-        "default_woman.png"
-    ]
+    const [currentIndex, setCurrentIndex] = useState(chosenIndex ? chosenIndex : 0)
+
 
     const previousImage = () => {
         setCurrentIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1))

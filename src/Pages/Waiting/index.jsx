@@ -16,10 +16,10 @@ export default function Waiting() {
     useEffect(() => {
 
         const userName = localStorage.getItem('ticTacToeUserName')
-
+        const imageIndex = parseInt(localStorage.getItem('ticTacToeImgIndex'), 10)
 
         if (socket && socket.connected) {
-            socket.emit('create-game', { userId: socket.id, userName })
+            socket.emit('create-game', { userId: socket.id, userName, imageIndex })
 
         } else {
             socket.on(connect, () => {
