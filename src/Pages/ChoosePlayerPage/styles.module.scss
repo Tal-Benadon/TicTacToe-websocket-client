@@ -1,39 +1,19 @@
 @import '../../vars';
 
-.header {
-    display: flex;
-    align-items: center;
-}
-
-.boardContainer {
+.choosePlayerContainer {
     flex: 1;
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
     width: 100%;
-
-    >* {
-        flex: 1;
-    }
+    gap: 2rem;
 }
 
-.rowDiv {
-    display: flex;
-    gap: 5px;
+.pageTitle {
+    width: 100%;
 }
 
-.btn {
-    display: flex;
-    align-items: center;
-}
-
-
-
-.buttonDiv {
-    display: flex;
-    justify-content: center;
-}
 
 .symbol {
     width: 100%;
@@ -46,12 +26,8 @@
     &.xActive {
         animation: gamePress 0.5s forwards ease-out;
     }
-}
 
-.headerContainer {
-    width: 100%;
-    display: flex;
-    align-items: center;
+
 }
 
 @keyframes symbolPress {
@@ -96,16 +72,4 @@
     100% {
         scale: 1.0;
     }
-}
-
-.endBtns {
-    @extend .flex-c;
-    flex-direction: column;
-    gap: 16px;
-}
-
-.screenCntr {
-    width: 100%;
-    // flex-grow: 2;
-    @extend .flex-c
 }

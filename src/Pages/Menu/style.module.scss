@@ -1,6 +1,6 @@
-.menuContainer {
-    flex: 1;
-}
+@import '../../vars';
+
+
 
 .Menu {
     height: 100%;
@@ -9,6 +9,7 @@
     justify-content: center;
     align-items: center;
     flex: 1;
+    position: relative;
 
     img {
         position: fixed;
@@ -28,7 +29,13 @@
         margin-top: 100px;
         padding-left: 30px;
         padding-right: 30px;
-        
+        gap: 1.5rem;
+        flex: 1;
 
     }
+}
+
+.settingsCog {
+    color: $ButtonTextBorderColor;
+    font-size: 48px;
 }

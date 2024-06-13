@@ -7,10 +7,12 @@ import Layout from './layout'
 import Welcome from './pages/Welcome'
 import Menu from './pages/Menu'
 import JoinGame from './pages/JoinGame'
-import ChoosePlayerPage from './pages/ChoosePlayerPage'
-import GameBoardPage from './pages/GameBoardPage'
 import ButtonBack from './componnents/ButtonBack'
 import Waiting from './pages/Waiting'
+import GameBoardPage from './pages/GameBoardPage'
+import ChoosePlayerPage from './pages/ChoosePlayerPage'
+import PendingGamePage from './pages/PendingGamePage'
+import SettingsPage from './pages/SettingsPage'
 
 const router = createBrowserRouter([
   {
@@ -24,6 +26,9 @@ const router = createBrowserRouter([
       {
         element: <ButtonBack />, children: [
           {
+            path: 'settings', element: < SettingsPage />
+          },
+          {
             path: 'JoinGame', element: <JoinGame />
           },
           {
@@ -31,6 +36,9 @@ const router = createBrowserRouter([
           },
           {
             path: 'Waiting', element: <Waiting />
+          },
+          {
+            path: 'PendingGame', element: <PendingGamePage />
           }
         ]
       },
