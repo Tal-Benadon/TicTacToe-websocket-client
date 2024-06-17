@@ -16,6 +16,7 @@ import SettingsPage from './pages/SettingsPage'
 
 const router = createBrowserRouter([
   {
+
     element: <Layout />, children: [
       {
         path: '/', element: <Welcome />
@@ -32,14 +33,14 @@ const router = createBrowserRouter([
             path: 'JoinGame', element: <JoinGame />
           },
           {
-            path: 'ChoosePlayer', element: <ChoosePlayerPage />
-          },
-          {
             path: 'Waiting', element: <Waiting />
           },
           {
+            path: 'ChoosePlayer', element: <ChoosePlayerPage />
+          },
+          {
             path: 'PendingGame', element: <PendingGamePage />
-          }
+          },
         ]
       },
       {

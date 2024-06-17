@@ -6,21 +6,60 @@ import Button from '../../componnents/Button'
 import SymbolButton from '../../componnents/SymbolButton'
 import { useNavigate } from 'react-router-dom'
 import BoardHeader from '../../componnents/boardHeader'
+import Modal from '../../componnents/Modal'
 export default function GameBoardPage() {
     // const [turn, setTurn] = useState(false)c
     const [isWaiting, setIsWaiting] = useState(false)
-    const { userTurn, setUserTurn, mySymbol, setUserInfo, setOpponentInfo } = useTurnStore()
-    const createGameBoard = useBoardStore((state) => state.createBoard)
+    const { setMySymbol, userTurn, setUserTurn, mySymbol, setUserInfo, setOpponentInfo } = useTurnStore()
+    // const createGameBoard = useBoardStore((state) => state.createBoard)
     const { gameBoard, gameEnded, setGameEnded, updateSymbol, setGameWinner, setGameBoard } = useBoardStore()
-    const checkBoard = useBoardStore((state) => state.checkBoard)
-    const resetGame = useBoardStore((state) => state.resetGame)
-    const resetGameWinner = useBoardStore((state) => state.resetGameWinner)
+    // const checkBoard = useBoardStore((state) => state.checkBoard)
+    // const resetGame = useBoardStore((state) => state.resetGame)
+    // const resetGameWinner = useBoardStore((state) => state.resetGameWinner)
+    const navigate = useNavigate()
     const socket = useSocketStore((state) => state.socket)
-
+    const [showModal, setShowModal] = useState(false)
+    const [isUserLeft, setIsUserLeft] = useState(false)
+    const openModal = () => {
+        setShowModal(true)
+    }
+    const closeModal = () => {
+        setShowModal(false)
+    }
     console.log(gameBoard);
+
+    useEffect(() => {
+        if (gameBoard.length === 0) {
+            console.log("trying to recover");
+            let userId = localStorage.ticTacToeId
+            let roomId = localStorage.ticTacToeRoomId
+            socket.emit('recollect-user-info', { roomId, userId })
+        }
+        socket.on('refresh-user-info', (data) => {
+            let userInfo = data.userInfo
+            console.log(data.userInfo);
+            setUserInfo(userInfo)
+            setOpponentInfo(data.opponentInfo)
+            setGameBoard(data.gameBoard)
+            setMySymbol(userInfo.symbol)
+            console.log(data.currentTurn);
+            setUserTurn(data.currentTurn)
+
+            socket.id = userInfo.userId
+            socket.roomCode = localStorage.getItem('ticTacToeRoomId')
+            console.log("socketcode", socket.roomCode);
+
+        })
+    }, [])
 
 
     useEffect(() => {
+        socket.on("user-backed", (data) => {
+            console.log(data.alert);
+            setIsUserLeft(true)
+            openModal()
+        })
+
         socket.on("game-move", (data) => {
             let newGameBoard = data.gameBoard
             let newTurn = data.newTurn
@@ -39,6 +78,7 @@ export default function GameBoardPage() {
             if (data.gameBoard) {
                 setGameBoard(data.gameBoard)
             }
+
         })
 
         socket.on("illegal-move", (data) => {
@@ -62,8 +102,6 @@ export default function GameBoardPage() {
 
     }, [socket])
 
-
-
     const onPlayAgainClick = () => {
         // setTurn(false)
         socket.emit("play-again")
@@ -71,25 +109,60 @@ export default function GameBoardPage() {
     }
 
     const onBackClick = () => {
-        navigate
+        socket.emit("backing-user")
+        navigate('/JoinGame')
     }
-
-
-
-
 
     const handleOnButtonClick = (location) => {
         if (gameEnded) {
+            console.log("gameENDED?");
             return
         }
         if (userTurn === socket.id) {
+            console.log(userTurn);
+            console.log(socket.id);
+            console.log(mySymbol);
             let update = updateSymbol(location[0], location[1], mySymbol) // adds "isPlayed:true"
             console.log(update);
+            console.log(gameBoard);
             socket.emit("game-move", { location, mySymbol })
         } else {
+            console.log("Id", socket.id);
+            console.log("trurn", userTurn);
+            console.log("WrongId??");
             return
         }
 
+
+    }
+    const modalUserLeftHtml = () => {
+        return (
+            <div className={styles.modalContentContainer}>
+                <h2>OPPONENT LEFT</h2>
+                <p>press to leave to menu</p>
+                <div className={styles.modalButtons}>
+                    <Button text='CONFIRM' onClick={onBackClick} style={{
+                        borderRadius: '7px'
+                    }} />
+                </div>
+            </div>
+        )
+    }
+    const modalHtmlContent = () => {
+        return (
+            <div className={styles.modalContentContainer}>
+                <h2>QUIT GAME?</h2>
+                <p>are you sure?</p>
+                <div className={styles.modalButtons}>
+                    <Button text='YES' onClick={onBackClick} style={{
+                        borderRadius: '7px'
+                    }} />
+                    <Button text='NO' onClick={closeModal} style={{
+                        borderRadius: '7px'
+                    }} />
+                </div>
+            </div>
+        )
     }
 
     const getClassName = (symbol) => {
@@ -99,7 +172,12 @@ export default function GameBoardPage() {
 
 
     return (
+
+
         <div className={styles.boardContainer}>
+            <Modal show={showModal} onClose={closeModal} >
+                {isUserLeft ? modalUserLeftHtml() : modalHtmlContent()}
+            </Modal>
             <div className={styles.headerContainer}>
                 <BoardHeader />
             </div>
@@ -151,7 +229,7 @@ export default function GameBoardPage() {
                                 width: '250px',
                                 fontSize: '28px',
                             }} />}
-                        <Button text={'BACK TO MAIN'} style={{
+                        <Button text={'BACK'} onClick={onBackClick} style={{
                             height: '60px',
                             width: '250px',
                             fontSize: '28px',
@@ -163,7 +241,7 @@ export default function GameBoardPage() {
                     </div>
                     :
                     <div className={styles.btn}>
-                        <Button text={'BACK'} style={{
+                        <Button text={'BACK'} onClick={openModal} style={{
                             height: '85px',
                             width: 'fit-content',
                             padding: '0px 5rem',
@@ -174,5 +252,6 @@ export default function GameBoardPage() {
             }
 
         </div>
+
     )
 }
