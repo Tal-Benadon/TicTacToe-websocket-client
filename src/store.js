@@ -4,7 +4,7 @@ export const useBoardStore = create((set, get) => ({
     iterations: 3,
     gameWinner: {},
     setGameWinner: (result) => set({ gameWinner: result }),
-    resetGameWinner: () => ({ gameWinner: '' }),
+    resetGameWinner: () => ({ gameWinner: {} }),
     gameEnded: false,
     setGameEnded: (result) => set({ gameEnded: result }),
     resetGame: () => set({ gameEnded: false }),
@@ -160,9 +160,9 @@ export const useBoardStore = create((set, get) => ({
 
 
 export const useTurnStore = create((set, get) => ({
-    userTurn: null,
-    userInfo: null,
-    opponentInfo: null,
+    userTurn: {},
+    userInfo: {},
+    opponentInfo: {},
     mySymbol: '',
     setUserInfo: (info) => set({ userInfo: info }),
     setMySymbol: (newSymbol) => set({ mySymbol: newSymbol }),
@@ -171,7 +171,7 @@ export const useTurnStore = create((set, get) => ({
 }))
 
 export const useSocketStore = create((set, get) => ({
-    socket: io('http://localhost:3000/')
+    socket: io('http://localhost:3000')
 }))
 //http://localhost:3000
 //https://0422jj7m-3000.euw.devtunnels.ms/

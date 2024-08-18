@@ -20,16 +20,19 @@ export default function Waiting() {
 
         if (socket && socket.connected) {
             socket.emit('create-game', { userId: socket.id, userName, imageIndex })
+            localStorage.ticTacToeId = socket.id
 
         } else {
             socket.on(connect, () => {
                 socket.emit('create-game', { userId: socket.id, userName })
+                localStorage.ticTacToeId = socket.id
             })
         }
 
         socket.on("game-code", (data) => {
             console.log(data);
             setGameCode(data.gameCode)
+            localStorage.ticTacToeRoomId = data.gameCode
         })
 
         socket.on("gamejoin-alert", (data) => {

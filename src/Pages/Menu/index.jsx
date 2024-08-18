@@ -19,9 +19,7 @@ export default function Menu() {
         <div className={styles.Menu}>
             <img src="620af74ff1676949d91804882a8c5bab.png" alt="" />
             <div className={styles.Buttons}>
-                <Button text='PLAY SOLO' />
-
-                <Button text='PLAY WITH FRIEND' onClick={onFriendClick} />
+                <Button text='PLAY WITH A FRIEND' onClick={onFriendClick} />
             </div>
             <Button onClick={onSettingsClick} text={<HiOutlineCog8Tooth className={styles.settingsCog} />} style={{
                 position: 'absolute',

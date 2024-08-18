@@ -36,6 +36,7 @@ export default function CharRouletteV2({ images, imageIndex, setImageIndex }) {
     }
 
     const handleClick = (index) => {
+
         if (index === (imageIndex - 1 + images.length) % images.length) {
             previousImage();
         } else if (index === (imageIndex + 1) % images.length) {
