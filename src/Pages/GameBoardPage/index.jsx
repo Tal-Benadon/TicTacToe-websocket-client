@@ -8,14 +8,12 @@ import { useNavigate } from 'react-router-dom'
 import BoardHeader from '../../componnents/boardHeader'
 import Modal from '../../componnents/Modal'
 export default function GameBoardPage() {
-    // const [turn, setTurn] = useState(false)c
+
     const [isWaiting, setIsWaiting] = useState(false)
     const { setMySymbol, userTurn, setUserTurn, mySymbol, setUserInfo, setOpponentInfo } = useTurnStore()
-    // const createGameBoard = useBoardStore((state) => state.createBoard)
+
     const { gameBoard, gameEnded, setGameEnded, updateSymbol, setGameWinner, setGameBoard } = useBoardStore()
-    // const checkBoard = useBoardStore((state) => state.checkBoard)
-    // const resetGame = useBoardStore((state) => state.resetGame)
-    // const resetGameWinner = useBoardStore((state) => state.resetGameWinner)
+
     const navigate = useNavigate()
     const socket = useSocketStore((state) => state.socket)
     const [showModal, setShowModal] = useState(false)
